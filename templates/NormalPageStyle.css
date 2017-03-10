@@ -1,0 +1,23 @@
+.mainpage {
+	position: relative;
+	min-width:600px
+}
+left {
+	position: absolute;
+	left: 0px;
+	width: 200px;
+}
+right {
+	position: absolute;
+	right: 0px;
+	width: 200px;
+}
+.searchBar{
+	margin-left: 200px;
+	margin-right: 200px;
+}
+section {
+	margin-left: 200px;
+	margin-right: 200px;
+	border: 1px solid #999;
+}
