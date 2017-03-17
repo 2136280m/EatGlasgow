@@ -1,0 +1,17 @@
+table { 
+	margin: 0 auto; 
+	width:250px;
+}
+input{
+	margin: 0 auto; 
+	width: 150px;
+}
+form {
+	text-align: center;
+}
+img {
+	height: 200px;
+	width: 200px;
+    display: block;
+    margin: 0 auto;
+}

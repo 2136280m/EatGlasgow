@@ -1,14 +1,17 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html>
-<head>
+
+{% block title_block %}
+	EatGlasgow
+	</title>
 	<link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
-	<title>EatGlasgow</title> 
-</head>
-<body>
+{% endblock %} 
+
+{% block body_block %}
 <div class="mainpage">
 	<left>
 		<p>Signup</p>
-		<p>login</p>
+		<a href="{% url 'login' %}">login</a>
 	</left>
   
 	<right>
@@ -53,5 +56,4 @@
 {% endif%}
 
 </div>
-</body>
-</html>
+{% endblock %}

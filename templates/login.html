@@ -1,11 +1,27 @@
-<html>
-	<head>
-		<title> EatGlasgow </title>
-	</head>
-	<body>
-		<h1>EatGlasgow--Login</h1>
-		<h3> Username <input type = "text" placeholder ="ex:username"></h3>
-		<h3> Password <input type = "text" placeholder ="ex:qwerty"></h3>
-		<button type="button">Login</button>
-	</body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	EatGlasgow-Login
+	</title>
+	<link rel="stylesheet" type="text/css" href="{% static "CSS/Login.css" %}"/>
+{% endblock %} 
+
+{% block body_block %}
+	<img src="{% static "image/logo.jpg" %}" alt="Logo"/>
+	</br></br></br>
+	<form id="login_form" method="post" action="{% url 'login' %}">
+		{% csrf_token %}
+		<table>
+		<tr><td colspan="2"><H1>Login</H1></td></tr>
+		<tr>
+		<td>Username: </td><td><input type="text" name="username" width="48" size="50"/></td>
+		</tr>
+		<tr>
+		<td>Password: </td><td><input type="password" name="password" width="48" size="100" />
+		</td>
+		</tr>
+		<table>
+		<input type="submit" value="Login" />
+	</form>
+{% endblock %}
