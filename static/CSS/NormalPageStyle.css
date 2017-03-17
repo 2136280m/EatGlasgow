@@ -21,3 +21,21 @@ section {
 	margin-right: 200px;
 	border: 1px solid #999;
 }
+.image {
+	margin-left: 50px;
+	height: 100px;
+	width: 100px;
+	}
+.image img {
+    width: 100%;
+    height: auto;
+}
+.Rimage {
+	float: left;
+	height: 125px;
+	width: 300px;
+	}
+.Rimage img {
+    width: auto;
+    height: 100%;
+}
