@@ -39,3 +39,6 @@ section {
     width: auto;
     height: 100%;
 }
+.center {
+	text-align: center;
+}

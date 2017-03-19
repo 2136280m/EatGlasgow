@@ -10,8 +10,10 @@
 {% block body_block %}
 <div class="mainpage">
 	<left>
-		<p>Signup</p>
-		<a href="{% url 'login' %}">login</a>
+		<p class="center">
+		<a href="{% url 'login' %}">Login</a></br>
+		<a href="{% url 'registration' % }">Registration</a>
+		</p>
 	</left>
   
 	<right>
@@ -25,7 +27,7 @@
 		This should be the search bar
 		</p>
 	</div>
- 
+ <!--Example-->
 		<section>
 			<p>
 			<div class="Rimage"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>
@@ -35,10 +37,12 @@
 			{{ PriceRange }}</br>
 			{{ OpeningHours }}</br>
 			{{ Status }}</br>
-			
+			<a href="{% url 'restaurant' RestaurantID %}" class="center">More Information</a>
 			</p>
 		</section>
-{% if Restaurant %}
+
+ <!--Real one-->
+{% if RestaurantList %}
 	{% for Restaurant in RestaurantList %}
 		<section>
 			<p>

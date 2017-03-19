@@ -4,10 +4,15 @@
 {% block title_block %}
 	EatGlasgow-Registration
 	</title>
-	<link rel="stylesheet" type="text/css" href="{% static "CSS/Registration.css.css" %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static "CSS/Registration.css" %}"/>
 {% endblock %} 
 
 {% block body_block %}
 	<H1 class="center">Create your EatGlasgow Account</H1>
+	<form class="center" id="registration_form" method="post" action="{% url 'registration' %}" enctype="multipart/form-data">>
+		{% csrf_token %}
+		There should be a form.py in here.</br>
+		<input type="submit" value="Login" />
+	</form>
 {% endblock %}
 
