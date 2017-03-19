@@ -5,16 +5,18 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     RestaurantList={}
-    restaurantExample = {"RestaurantID":1, "Name":"Myrestaurant", "Cuisine":"Chinese",
-        "StressAdress":"Chinese", "PriceRange":"Expensive", "OpeningHours":"7am-8am",
+    restaurantExample = {"RestaurantID":1, "Name":"Apple", "Cuisine":"Chinese",
+        "StressAdress":"Glasogw", "PriceRange":"Expensive", "OpeningHours":"7am-8am",
         "Status":1,"logo":"logo.jpg"}
-    response = render(request, 'index.html', restaurantExample)
     # Render the response and send it back!
-    return response
+    return render(request, 'index.html', restaurantExample)
+
+def about(request):
+	return render(request, 'about.html')
 	
 def restaurant(request, RestaurantID):
 	
-	restaurantExample = {"RestaurantID":1, "Name":"Myrestaurant", "Cuisine":"Chinese",
+	restaurantExample = {"RestaurantID":1, "Name":"Apple", "Cuisine":"Chinese",
     "StressAdress":"Chinese", "PriceRange":"Expensive", "OpeningHours":"7am-8am",
     "Status":1,"logo":"logo.jpg"}
 	try:
@@ -27,7 +29,7 @@ def restaurant(request, RestaurantID):
 
 
 def login(request):
-    return render(request, 'login.html', restaurantExample)
+    return render(request, 'login.html')
     """#f the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
         # Gather the username and password provided by the user.

@@ -4,9 +4,17 @@
 {% block title_block %}
 	{{ Name }}
 	</title>
-	<link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static "CSS/restaurant.css" %}"/>
+	
 {% endblock %} 
 
 {% block body_block %}
-	
+<section>
+	<H1>{{ Name }}</H1>
+	{{ Cuisine }}</br>
+	{{ StressAdress }}</br>
+	{{ PriceRange }}</br>
+	{{ OpeningHours }}</br>
+	{{ Status }}</br>
+</section>
 {% endblock %}
