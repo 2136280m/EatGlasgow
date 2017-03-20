@@ -4,22 +4,30 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    
-    restaurantExample = {"RestaurantID":1, "Name":"Myrestaurant", "Cuisine":"Chinese",
-        "StressAdress":"Chinese", "PriceRange":"Expensive", "OpeningHours":"7am-8am",
+    RestaurantList={}
+    restaurantExample = {"RestaurantID":1, "Name":"Apple", "Cuisine":"Chinese",
+        "StressAdress":"Glasogw", "PriceRange":"Expensive", "OpeningHours":"7am-8am",
         "Status":1,"logo":"logo.jpg"}
-    response = render(request, 'index.html', restaurantExample)
     # Render the response and send it back!
-    return response
-    #return HttpResponse("Rango says hey there partner!")
-    
+    return render(request, 'index.html', restaurantExample)
 
-def index1(request, IndexPage):
-    context_dict = {'Index': IndexPage}
-    # Render the response and send it back!
-    return render(request, 'index.html', context_dict)
-    #return HttpResponse("Rango says hey there partner!")
-    
+def about(request):
+	return render(request, 'about.html')
+	
+def restaurant(request, RestaurantID):
+	
+	restaurantExample = {"RestaurantID":1, "Name":"Apple", "Cuisine":"Chinese",
+    "StressAdress":"Chinese", "PriceRange":"Expensive", "OpeningHours":"7am-8am",
+    "Status":1,"logo":"logo.jpg"}
+	try:
+		if(int(RestaurantID)==restaurantExample["RestaurantID"]):
+			return render(request,'restaurant.html', restaurantExample)
+		else:
+			return HttpResponse("There is not such restaurant")
+	except ValueError:
+		return HttpResponse("There is not such restaurant")
+
+
 def login(request):
     return render(request, 'login.html')
     """#f the request is a HTTP POST, try to pull out the relevant information.
@@ -53,7 +61,6 @@ def login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object..."""
-        
-    
-        
 		
+def registration(request):
+	return render(request, 'registration.html')

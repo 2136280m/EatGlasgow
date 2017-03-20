@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.conf.urls import include 
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,6 +23,10 @@ from EatGlasgowApp import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
+	url(r'^about/', views.about, name='about'),
+	url(r'^restaurant/(?P<RestaurantID>[\w\-]+)$', views.restaurant, name='restaurant'),
+	
     url(r'^login$', views.login, name='login'),
-    url(r'^index-(?P<IndexPage>[\w\-]+)/$', views.index1, name='index'),
+	url(r'^registration$', views.registration, name='registration'),
+
 ]
