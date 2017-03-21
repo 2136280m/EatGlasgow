@@ -31,7 +31,7 @@ SECRET_KEY = 'l=#3+gyy(_gzbdgx=ce+%d-j90_1u0i=tc^$63#)=jm82^-33('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tomwong1027.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
