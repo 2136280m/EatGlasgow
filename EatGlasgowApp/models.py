@@ -24,19 +24,6 @@ class UserProfile(models.Model):
         return self.user.username
 
 
-class Admin(models.Model):
-    ADMIN_CHOICES = (
-        (1, 'isAdmin'),
-        (0, 'isLocked'),
-    )
-    username = models.OneToOneField(UserProfile)
-
-    isAdmin = models.IntegerField(choices=ADMIN_CHOICES, default=1)
-
-    def __str__(self):
-        return self.user.username
-
-
 class Owner(models.Model):
     OWNER_CHOICES = (
         (1, 'isOwner'),
@@ -69,6 +56,7 @@ class Restaurant(models.Model):
     )
 
     resID = models.AutoField(primary_key=True)
+    owner = models.ForeignKey(Owner)
     name = models.CharField(max_length=100,blank=False)
     photo = models.ImageField(upload_to='restaurant_images', blank=False)
     cuisine = models.CharField(max_length=2, choices=CUISINE_CHOICES,blank=False)
@@ -125,6 +113,7 @@ class Review(models.Model):
 
     def __str__(self):
         return self.revID
+
 
 class Reply(models.Model):
     repID = models.AutoField(primary_key=True)
