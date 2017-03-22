@@ -2,16 +2,16 @@
 {% load staticfiles %}
 <html> 
 	<head>
-	<title> 
-		{% block title_block %}
-		{% endblock %} 
-	</title>
-	{% block head_block %}
-	{% endblock %}
-	<style>
-		.center {text-align: center;}
-	</style>
-</head>
+		<title> 
+			{% block title_block %}
+			{% endblock %} 
+		</title>
+		{% block head_block %}
+		{% endblock %}
+		<style>
+			.center {text-align: center;}
+		</style>
+	</head>
 <body>
 	 <div>
 		{% block body_block %}
@@ -22,7 +22,7 @@
 	<p>
 		<a href="{% url 'index' %}">Index</a>  <a href="{% url 'about' %}">About</a>
 	</p>
-	 The Website Powered by </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
+	 The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
 	 <div>
 </body> 
 </html>

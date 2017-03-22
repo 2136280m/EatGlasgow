@@ -4,15 +4,26 @@
 {% block title_block %}
 	EatGlasgow-Registration
 {% endblock %} 
+
 {% block head_block %}
 	<link rel="stylesheet" type="text/css" href="{% static "CSS/Registration.css" %}"/>
 {% endblock %}
 
 {% block body_block %}
-	<H1 class="center">Create your EatGlasgow Account</H1>
-	<form class="center" id="registration_form" method="post" action="{% url 'registration' %}" enctype="multipart/form-data">>
-		{% csrf_token %}
-		There should be a form.py in here.</br>
-		<input type="submit" value="Login" />
-	</form>
+	{% if registered %}
+		Congratulations you have created an account!
+		<a href="{% url 'index' %}"> Return to the homepage </a> 
+		
+	{% else %}
+		<H1 class="center">Create your EatGlasgow Account</H1>
+		<form class="center" id="user_form" method="POST" action="{% url 'registration' %}"
+			enctype="multipart/form-data">
+			
+			{% csrf_token %}
+			Please enter your details.</br>
+			
+			{{user_form.as_p}}
+			<input type="submit" name = "submit" value="Register" />
+		</form>
+	{% endif %}
 {% endblock %}
