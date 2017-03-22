@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django import forms
+from django.contrib.auth.models import User
+from EatGlasgowApp.models import UserProfile
+from EatGlasgowApp.forms import UserForm
 
 def index(request):
     RestaurantList={}
@@ -63,4 +67,29 @@ def login(request):
         # blank dictionary object..."""
 		
 def registration(request):
-	return render(request, 'registration.html')
+	registered = False
+	
+	if request.method == 'POST':
+		user_form = UserForm(data=request.POST)
+	
+		if user_form.is_valid():
+			user = user_form.save()
+			user.set_password(user.password)
+			user.save()
+			registered = True
+	else:
+		user_form = UserForm()
+			
+	return render(request, 'registration.html',
+			{'registered': registered,'user_form': user_form})
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

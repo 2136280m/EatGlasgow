@@ -1,4 +1,3 @@
 from django.contrib import admin
-from rango.models import UserProfile
-
+from EatGlasgowApp.models import UserProfile
 # Register your models here

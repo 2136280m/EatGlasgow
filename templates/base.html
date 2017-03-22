@@ -5,6 +5,9 @@
 	<title> 
 		{% block title_block %}
 		{% endblock %} 
+	</title>
+	{% block head_block %}
+	{% endblock %}
 	<style>
 		.center {text-align: center;}
 	</style>
@@ -19,7 +22,7 @@
 	<p>
 		<a href="{% url 'index' %}">Index</a>  <a href="{% url 'about' %}">About</a>
 	</p>
-	 The Website Powered by </br>Yuk Fai Wong,  Nhut Minh Vo
+	 The Website Powered by </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
 	 <div>
 </body> 
 </html>
