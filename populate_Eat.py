@@ -5,54 +5,23 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 import django
 django.setup()
 import random
-from EatGlasgow.models import UserProfile,Owner,Restaurant,Promotion,Review,Reply
+from EatGlasgowApp.models import UserProfile,Owner,Restaurant,Promotion,Review,Reply
 from django.contrib.auth.models import User
 def populate():
-   # First, we will create lists of dictionaries containing the pages
-   # we want to add into each category.
-   # Then we will create a dictionary of dictionaries for our categories.
-   # This might seem a little bit confusing, but it allows us to iterate
-   # through each data structure, and add the data to our models.
-   
-   python_pages = [
-       {"title": "Official Python Tutorial",
-        "url":"http://docs.python.org/2/tutorial/"},
-       {"title":"How to Think like a Computer Scientist",
-        "url":"http://www.greenteapress.com/thinkpython/"},
-       {"title":"Learn Python in 10 Minutes",
-        "url":"http://www.korokithakis.net/tutorials/python/"} ]
-   
-   django_pages = [
-       {"title":"Official Django Tutorial",
-        "url":"https://docs.djangoproject.com/en/1.9/intro/tutorial01/"},
-       {"title":"Django Rocks",
-        "url":"http://www.djangorocks.com/"},
-       {"title":"How to Tango with Django",
-        "url":"http://www.tangowithdjango.com/"} ]
-   
-   other_pages = [
-       {"title":"Bottle",
-        "url":"http://bottlepy.org/docs/dev/"},
-       {"title":"Flask",
-        "url":"http://flask.pocoo.org"} ]
-   
-   cats = {"Python": {"pages": python_pages},
-           "Django": {"pages": django_pages},
-           "Other Frameworks": {"pages": other_pages} }
 
    users = [
-       {"username":"nicky", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
+       {"username": "nickyvo", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
        {"username": "alex", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
        {"username": "tom", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
        {"username": "caroline", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
        {"username": "guest", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
        {"username": "guest1", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1}
-            ]
+   ]
 
-   owners = [{"username": "nicky"}, {"username": "alex"},
+   owners = [{"username": "nickyvo"}, {"username": "alex"},
              {"username": "tom"}, {"username": "caroline"}]
    restaurants = [
-       {"name": "Weather Spoon", "owner": "nicky", "photo": "defRes.jpeg",
+       {"name": "Weather Spoon", "owner": "nickyvo", "photo": "defRes.jpeg",
                 "cuisine": "WE", "address": "123 Byres Road Glasgow",
                 "price": 2, "status": 1},
        {"name": "Cook Indi", "owner": "tom", "photo": "defRes.jpeg",
@@ -64,7 +33,7 @@ def populate():
        {"name": "Neighbourhood", "owner": "alex", "photo": "defRes.jpeg",
         "cuisine": "AS", "address": "123 Argyle Street Glasgow",
         "price": 2, "status": 1},
-       {"name": "Pickled Ginger", "owner": "nicky", "photo": "defRes.jpeg",
+       {"name": "Pickled Ginger", "owner": "nickyvo", "photo": "defRes.jpeg",
         "cuisine": "AS", "address": "123 St.Vincent Street Glasgow",
         "price": 3, "status": 1},
                 ]
@@ -88,56 +57,98 @@ def populate():
        {"revID": 2, "owner": "tom", "content": "Thank you"},
    ]
 
-   # If you want to add more catergories or pages,
-   # add them to the dictionaries above.
-   
-   # The code below goes through the cats dictionary, then adds each category,
-   # and then adds all the associated pages for that category.
-   # if you are using Python 2.x then use cats.iteritems() see
-   # http://docs.quantifiedcode.com/python-anti-patterns/readability/
-   # for more information about how to iterate over a dictionary properly.
-   
-   for user in users.items():
+   # Print out
+   for c in User.objects.all():
+       print("- {0} - {1}".format(str(c), str(c)))
+
+   for user in users:
+        add_user_and_profile(user["username"], user["pass"], user["avatar"])
+
+        # Print out
+   for c in User.objects.all():
+       print("- {0} - {1}".format(str(c), str(c)))
+
+   for owner in owners:
+       add_owner(owner["username"])
+   # Print out
+   for c in Owner.objects.all():
+       print("- {0} - {1}".format(str(c), str(c.isOwner)))
+
+   for res in restaurants:
+       add_res(res["owner"],res["name"],res["photo"],res["cuisine"],res["address"], res["price"])
+
+   for c in Restaurant.objects.all():
+       print("- {0} - {1}".format(str(c), str(c.status)))
+   for pro in promotions:
+       add_pro(pro["ResID"],pro["des"])
+   for c in Promotion.objects.all():
+       print("- {0} - {1}".format(str(c), str(c.status)))
+   for rev in reviews:
+       add_review(rev["user"],rev["resID"],rev["content"],rev["photo"],rev["rating"])
+   for c in Review.objects.all():
+       print("- {0} - {1}".format(str(c), str(c.status)))
+
+   for rep in replies:
+       add_reply(rep["revID"],rep["owner"],rep["content"])
+
+   for c in Reply.objects.all():
+       print("- {0} - ".format(str(c)))
+
+def add_user_and_profile(username,password,avatar):
+    u = User.objects.create_user(username, email=None, password=None)
+    u.set_password(password)
+    u.save()
+    up = UserProfile.objects.create()
+    up.user_id = u.id
+    up.avatar = avatar
+    up.save()
 
 
-       for cat, cat_data in cats.items():
-           if (cat == "Python"):
-               c = add_cat(cat, 128, 64)
-           elif (cat == "Django"):
-               c = add_cat(cat, 64, 32)
-           else:
-               c = add_cat(cat, 32, 16)
-           for p in cat_data["pages"]:
-               add_page(c, p["title"], p["url"])
-   
-   # Print out the categories we have added.
-   for c in Category.objects.all():
-       for p in Page.objects.filter(category=c):
-           print("- {0} - {1}".format(str(c), str(p)))
+def add_owner(username):
+    u = User.objects.get(username=username)
+    o = Owner.objects.create()
+    o.user_id = u.id
+    o.save()
 
-def add_user(username,password,avatar):
-    u=User.objects.get_or_create()
+def add_res(owner,name,photo,cuisine,add,price):
+    u = User.objects.get(username=owner)
+    r = Restaurant.objects.create()
+    r.owner_id = u.id
+    r.name = name
+    r.photo = photo
+    r.cuisine = cuisine
+    r.streetAddress = add
+    r.priceRange = price
+    r.save()
 
-def add_page(cat, title, url, views=0):
-    p = Page.objects.get_or_create(category=cat, title=title)[0]
-    p.url=url
-    p.views= random.randrange(5, 20)
+def add_pro(res,content):
+    p = Promotion.objects.create()
+    r = Restaurant.objects.get(res)
+    p.resID_id = r.id
+    p.content = content
     p.save()
-    return p
- 
-def add_cat(name):
-    c = Category.objects.get_or_create(name=name)[0]
-    c.save()
-    return c
 
-def add_cat(name,views,likes):
-    c = Category.objects.get_or_create(name=name)[0]
-    c.views=views
-    c.likes=likes
-    c.save()
-    return c
+def add_review(user,res,content,photo,rating):
+    rev = Review.objects.create()
+    u = User.objects.get(username=user)
+    res = Restaurant.objects.get(res)
+    rev.userID_id = u.id
+    rev.resID_id = res.id
+    rev.content = content
+    rev.rating =rating
+    rev.save()
+
+def add_reply(rev,owner,content):
+    rev = Review.objects.get(rev)
+    u = User.objects.get(username=owner)
+    rep = Reply.objects.create()
+    rep.revID_id = rev.id
+    rep.ownerID_id = u.id
+    rep.content = content
+    rep.save()
  
  # Start execution here!
 if __name__ == '__main__':
-    print("Starting Rango population script...")
+    print("Starting EatGlasgow population script...")
     populate()
+    print("Done")

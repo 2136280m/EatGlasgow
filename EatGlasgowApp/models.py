@@ -3,8 +3,6 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 
-from django.template.defaultfilters import slugify
-
 from django.contrib.auth.models import User
 
 
@@ -14,8 +12,7 @@ class UserProfile(models.Model):
         (0, 'Deleted'),
     )
     # links userprofile to a user model instance.
-    username = models.OneToOneField(User)
-
+    user = models.OneToOneField(User, primary_key=True)
     avatar = models.ImageField(upload_to='profile_images', blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     # override the __unicode__() method to return sth meaningful
@@ -29,12 +26,12 @@ class Owner(models.Model):
         (1, 'isOwner'),
         (0, 'isLocked'),
     )
-    username = models.OneToOneField(UserProfile)
+    user = models.OneToOneField(UserProfile, primary_key=True)
 
     isOwner = models.IntegerField(choices=OWNER_CHOICES, default=1)
 
     def __str__(self):
-        return self.user.username
+        return self.user.user.username
 
 
 class Restaurant(models.Model):
