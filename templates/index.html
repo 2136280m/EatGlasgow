@@ -14,23 +14,37 @@
             <p class="center">
                 <!--User Profile-->
                 {% if user.is_authenticated %}
-                    <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt="{{ user.get_id }}Photo" height="150px"
-                         width="150px"/>
-                    <p>Welcome, {{ user.get_username }}</p>
+                    <div>
+                        <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt="{{ user.get_id }}Photo"
+                             height="150px"
+                             width="150px"/>
+                    <h4>Welcome, {{ user.get_username }}</h4>
                     <a href="{% url 'logout' %}">Logout</a></br>
+                    </div>
                 {% else %}
-                    <p>Welcome, new user. Please log in.</p>
-                    <a href="{% url 'login' %}">Login</a></br>
-                    <a href="{% url 'registration' %}">Registration</a>
+                    <div>
+                        <img src="{{ MEDIA_URL }}profile_images\\defUser.jpeg" alt="{{ user.get_id }}Photo"
+                             height="150px"
+                             width="150px"/>
+                        <h4>Welcome, New User.</h4>
+                        Please <a href="{% url 'login' %}">Login</a> or
+                        <a href="{% url 'registration' %}">Register</a>
+                    </div>
                 {% endif %}
+                {%  if user.userprofile.status == 2 %}
+                    <a href = 'owner.html'> Your Restaurant </a>
+                {%  endif %}
             <!--end UserProfile-->
             </p>
         </left>
 
         <right>
             <div class="image"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>
-            <p>This is the right part of the page</p>
-            <p>Which 200px</p>
+            <br/>
+            <div class="promoPanel">
+                <p>This is the right part of the page</p>
+                <p>Which is 200px</p>
+            </div>
         </right>
 
 
