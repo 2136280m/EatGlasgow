@@ -11,10 +11,10 @@
 {% block body_block %}
     <div class="mainpage">
         <left>
-            <p class="center">
+            <p class="userProfilePanel">
                 <!--User Profile-->
                 {% if user.is_authenticated %}
-                    <div>
+                    <div style="text-align: center">
                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt="{{ user.get_id }}Photo"
                              height="150px"
                              width="150px"/>
@@ -22,7 +22,7 @@
                         <a href="{% url 'logout' %}">Logout</a></br>
                     </div>
                 {% else %}
-                    <div>
+                    <div style="text-align: center">
                         <img src="{{ MEDIA_URL }}profile_images\\defUser.jpeg" alt="{{ user.get_id }}Photo"
                              height="150px"
                              width="150px"/>
@@ -32,7 +32,9 @@
                     </div>
                 {% endif %}
                 {%  if user.userprofile.status == 2 %}
+                    <div style="text-align: center">
                     <a href = 'owner.html'> Your Restaurant </a>
+                    </div>
                 {%  endif %}
             <!--end UserProfile-->
             </p>

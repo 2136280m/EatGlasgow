@@ -26,6 +26,9 @@ left {
     border-radius: 25px;
     padding: 10px;
 }
+.userProfilePanel{
+    align-content: center;
+}
 
 right {
     position: absolute;
@@ -87,7 +90,6 @@ section {
     border: 2px solid #949494;
     padding: 5px;
     overflow-x:auto;
-    background-color: #dcdcdc;
 }
 .Rinfo{
     position: relative;
