@@ -126,3 +126,8 @@ def search_results(request):
     search = request.GET.get('search')
     context['results'] = Restaurant.objects.filter(name__icontains=search)
     return render(request, 'results.html', context=context)
+
+@login_required
+def your_restaurant(request):
+    restaurant_List = list(Restaurant.objects.all())
+    return render(request, 'your_restaurant.html', restaurant_List)

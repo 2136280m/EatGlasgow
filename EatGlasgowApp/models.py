@@ -17,6 +17,7 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to='profile_images', blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
+
     # override the __unicode__() method to return sth meaningful
 
     def __str__(self):

@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
 {% block title_block %}
-    Search Results
+    Your Restaurant
 {% endblock %}
 
 {% block head_block %}
-    <link rel="stylesheet" type="text/css" href="{% static "CSS/Registration.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
 {% endblock %}
+
 {% block body_block %}
 
-    <h4>Search results</h4>
-
-    <table>
-        {% for Restaurant in results %}
+    <div class = 'center'>
+        Here are the restaurants you own
+    </div>
+    {% for restaurant in restaurant_List %}
+        {% if restaurant.owner == user %}
             <section>
                 <p class="center">
                 <div class="Rimage"><img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/></div>
@@ -23,7 +27,11 @@
                 <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
                 </br>
                 </p>
-            </section
-        {% endfor %}
-    </table>
+            </section>
+        {% endif %}
+    {% endfor %}
+    <div>
+
+    </div>
+
 {% endblock %}
