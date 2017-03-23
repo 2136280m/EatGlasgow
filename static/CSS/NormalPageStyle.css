@@ -1,62 +1,94 @@
+.global{
+    background-color: #935d8c;
+		background-image: url('../assets/css/images/overlay.png'), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url('../assets/css/images/overlay.png'), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url('../assets/css/images/overlay.png'), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url('../assets/css/images/overlay.png'), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+}
 .center {
-	text-align: center
+    text-align: center
 }
 
 .mainpage {
-	position: relative;
-	min-width:1000px
+    position: relative;
+    min-width: 1000px
 }
+
 left {
-	position: absolute;
-	left: 0px;
-	width: 200px;
-	background-color: #FFFFFF;
-	height: 100%;
-	border: 1px solid #999;
+    position: absolute;
+    left: 0px;
+    width: 200px;
+    background-color: #949494;
+    background:rgba(255,255,255,0.3);
+    background-size: cover;
+    height: 100%;
+    border: 5px groove #7a7a7a;
+    padding: 10px;
 }
+
 right {
-	position: absolute;
-	right: 0px;
-	width: 200px;
-	background-color: #FFFFFF;
-	height: 100%;
-	border: 1px solid #999;
+    position: absolute;
+    right: 0px;
+    width: 200px;
+    background-color: #949494;
+    background:rgba(255,255,255,0.3);
+    background-size: cover;
+    height: 100%;
+    border: 5px groove #7a7a7a;
+    padding: 10px;
 }
-.searchBar{
-	margin-left: 250px;
-	margin-right: 250px;
-	background-color: #FFFFFF;
-	border: 1px solid #999;
+
+.searchBar {
+    margin-left: 25%;
+    margin-right: 25%;
+    align-content: center;
+    background-color: transparent;
+    border: 1px hidden #999;
 }
+.searchBar form{
+    margin-right: 25%;
+    margin-left: 25%;
+    border: 5px groove #935d8c;
+    padding: 0px;
+}
+
 section {
-	position: relative;
-	margin-left: 250px;
-	margin-right: 250px;
-	border: 1px solid #999;
-	background-color: #FFFFFF;
+    position: relative;
+    margin-left: 250px;
+    margin-right: 250px;
+    border: 1px solid #999;
+    background-color: #FFFFFF;
 }
+
 .image {
-	margin-left: 50px;
-	height: 100px;
-	width: 100px;
-	}
+    margin-left: 50px;
+    height: 100px;
+    width: 100px;
+}
+
 .image img {
     width: 100%;
     height: auto;
 }
+
 .Rimage {
-	float: left;
-	margin-left: 50px;
-	height: 125px;
-	width: 300px;
+    float: left;
+    margin-left: 50px;
+    height: 125px;
+    width: 300px;
 }
+
 .Rimage img {
     width: auto;
     height: 100%;
 }
+
 .middle {
-	position: relative;
-	min-height: 30px;
-	margin-left: 250px;
-	margin-right: 250px;
+    position: relative;
+    min-height: 30px;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.promoPanel p{
 }
