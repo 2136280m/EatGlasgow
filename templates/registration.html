@@ -15,16 +15,18 @@
 		<a href="{% url 'index' %}"> Return to the homepage </a> 
 		
 	{% else %}
+		<div class="registration">
 		<H1 class="center">Create your EatGlasgow Account</H1>
-		<form class="center" id="user_form" method="POST" action="{% url 'registration' %}"
+		<form id="user_form" method="POST" action="{% url 'registration' %}"
 			enctype="multipart/form-data">
 			
 			{% csrf_token %}
-			Please enter your details.</br>
+			<p>Please enter your details.</p>
 			<table>
 			{{user_form.as_table}}
 			</table>
 			<input type="submit" name = "submit" value="Register" />
 		</form>
+		<div>
 	{% endif %}
 {% endblock %}

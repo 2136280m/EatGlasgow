@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block body_block %}
+<<<<<<< HEAD
     <div class="mainpage">
         <left>
             <p class="center">
@@ -24,6 +25,33 @@
             <!--end UserProfile-->
             </p>
         </left>
+=======
+<div class="mainpage">
+	<left>
+		<p class="center">
+		{% if user.is_authenticated %}
+		<a href="{% url 'logout' %}">Logout</a></br>
+		{% else %}
+		<a href="{% url 'login' %}">Login</a></br>
+		<a href="{% url 'registration' %}">Registration</a>
+		{% endif %}
+		</p>
+	</left>
+  
+	<right>
+		<div class="image"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>
+		<p>This is the right part of the page</p>
+		<p>Which 200px</p>
+	</right>
+	
+    <div id="search">
+        <form method = "get" action = "{% url 'results' %}" enctype = "multipart/form-data">
+            <input id="other" type="text" name="search" placeholder="Type here...">
+            <input id="submitsearch" type="submit" name="Submit" style="margin-left: 1.5%;">
+        </form>
+    </div>
+	<div class="middle"><br></div>
+>>>>>>> 4b1b44aa725b1e8ac81ee00aa7a20621255fb770
 
         <right>
             <div class="image"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>

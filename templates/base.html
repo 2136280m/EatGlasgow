@@ -11,6 +11,7 @@
     {% endblock %}
 </head>
 <body style="background-color: #f2f2f2;">
+<<<<<<< HEAD
 <div>
     {% block body_block %}
     {% endblock %}
@@ -25,4 +26,18 @@
     The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
 </div>
 </body>
+=======
+	<div style="margin-bottom: 250px">
+		{% block body_block %}
+		{% endblock %}
+	</div>
+	
+	<div style="position: absolute ; bottom: 0px; left: 0px; text-align: center;margin: 0 auto;width: 100%">
+	<!--In text CSS to make sure the base do not effect other pages -->
+		<HR size="2" width="90%" >
+		<a href="{% url 'index' %}">Index</a>  <a href="{% url 'about' %}">About</a><br>
+		The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
+	</div>
+</body> 
+>>>>>>> 4b1b44aa725b1e8ac81ee00aa7a20621255fb770
 </html>
