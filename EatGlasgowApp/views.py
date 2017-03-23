@@ -70,15 +70,14 @@ def registration(request):
 
 
 def random_restaurant():
-    maxID = Restaurant.objects.last().resID
-    restaurant = []
-    if (maxID != None and maxID > 5):
-        randomint = set()  ##generat random int without repeating
+    restaurant_List = list(Restaurant.objects.all())
+    if restaurant_List.count(Restaurant) > 0:
+        restaurant_List = []
+        maxID = Restaurant.objects.last().resID
+        if maxID != None and maxID > 5:
+            randomint = set()  ##generat random int without repeating
         while len(randomint) < 5:
             randomint.add(randint(1, maxID))
         for RN in randomint:
-            restaurant.append(Restaurant.objects.get(resID=RN))
-    else:
-        restaurant = list(Restaurant.objects.all())
-
-    return (restaurant)
+            restaurant_List.append(Restaurant.objects.get(resID=RN))
+    return restaurant_List
