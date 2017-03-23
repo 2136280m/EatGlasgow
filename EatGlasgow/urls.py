@@ -27,6 +27,7 @@ urlpatterns = [
 	url(r'^restaurant-(?P<RestaurantID>[\w\-]+)$', views.restaurant, name='restaurant'),
 	
     url(r'^login$', views.user_login, name='login'),
+    url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'^registration$', views.registration, name='registration'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
