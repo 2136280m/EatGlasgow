@@ -1,7 +1,7 @@
 
 section {
 	display: block;
-    	margin: 0 auto;
+    margin: 0 auto;
 	width: 800px;
 	background-color: #FFFFFF;
 	border: 1px solid #999;
@@ -30,4 +30,13 @@ section {
 	min-height: 30px;
 	margin-left: 250px;
 	margin-right: 250px;
+}
+
+textarea {
+	margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:750px;
+	height:50px;
 }
