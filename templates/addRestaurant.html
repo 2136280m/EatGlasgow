@@ -6,7 +6,7 @@
 	</title>
 
 
-	<link rel="stylesheet" type="text/css" href="{% static "CSS/AddRestaurant.css" %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static "CSS/AddRestaurant.css" %}" />
 {% endBlock %}
 
 <div>
@@ -19,7 +19,13 @@
 	</tr>
 	<tr>
 		<td>Cuisine: </td>
-		<td><input type="text" name="Cuisine"></td>
+		<td>
+			<select>
+				<option>WS, Western</option>
+				<option>As, Asian</option>
+				<option>ME, Middle Eastern</option>
+			</select>
+		</td>
 	</tr>
 	<tr>
 		<td>Adress: </td>
@@ -29,10 +35,10 @@
 		<td>Price Range: </td>
 		<td>
 			<select>
-				<option>0-5</option>
-				<option>5-10</option>
-				<option>10-30</option>
-				<option>30+</option>
+				<option>0, Not Rated</option>
+				<option>1, Low Price</option>
+				<option>2, Affordable</option>
+				<option>3, Fancy</option>
 			</select>
 		</td>
 	</tr>
@@ -44,11 +50,12 @@
 		<td>Status: </td>
 		<td>
 			<select>
-				<option>Open</option>
-				<option>Close</option>
+				<option>1, Stored</option>
+				<option>0, Deleted</option>
+				<option>-1, Closed</option>
 			</select>
 		</td>
 	</tr>
-	</table>
+	</table>S
 	</div>
 	</form>

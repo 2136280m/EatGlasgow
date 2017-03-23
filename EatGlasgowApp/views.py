@@ -57,7 +57,6 @@ def registration(request):
 
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-
         if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
@@ -69,7 +68,6 @@ def registration(request):
             registered = True
     else:
         user_form = UserForm()
-    print(user_form)
     return render(request, 'registration.html', {'registered': registered, 'user_form': user_form})
 
 
@@ -86,6 +84,7 @@ def random_restaurant():
             restaurant_List.append(Restaurant.objects.get(resID=RN))
     return restaurant_List
 
+
 @login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
@@ -93,5 +92,16 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
 
+
 def add_restaurant(request):
     return render(request, 'addRestaurant.html')
+
+
+def search_results(reuqest):
+
+
+    context = {}
+    # this is what search bar is called
+    search = request.GET.get('search')
+    context['results'] = Book.objects.filer(name__icontains=search)
+    return render(request, 'Results.html', context=context)

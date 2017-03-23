@@ -16,6 +16,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True)
     avatar = models.ImageField(upload_to='profile_images', blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
+
     # override the __unicode__() method to return sth meaningful
 
     def __str__(self):
@@ -42,9 +43,9 @@ class Restaurant(models.Model):
 
     resID = models.AutoField(primary_key=True)
     owner = models.ForeignKey(User)
-    name = models.CharField(max_length=100,blank=False)
+    name = models.CharField(max_length=100, blank=False)
     photo = models.ImageField(upload_to='restaurant_images', blank=False)
-    cuisine = models.CharField(max_length=2, choices=CUISINE_CHOICES,blank=False)
+    cuisine = models.CharField(max_length=2, choices=CUISINE_CHOICES, blank=False)
     streetAddress = models.CharField(max_length=100, blank=True)
     priceRange = models.IntegerField(choices=RANGE_CHOICES, default=0)
     openingHour = models.CharField(max_length=100, blank=True)
@@ -52,7 +53,7 @@ class Restaurant(models.Model):
     description = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
-        return "ID:"+str(self.resID)+" "+"Name:"+self.name
+        return "ID:" + str(self.resID) + " " + "Name:" + self.name
 
 
 def one_week_hence():
@@ -74,7 +75,7 @@ class Promotion(models.Model):
     status = models.IntegerField(choices=PROM_STATUS_CHOICES, default=1)
 
     def __str__(self):
-        return str(self.promotionID)+" "+self.resID.name
+        return str(self.promotionID) + " " + self.resID.name
 
 
 class Review(models.Model):
@@ -98,7 +99,7 @@ class Review(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
     def __str__(self):
-        return str(self.revID)+" "+self.userID.username
+        return str(self.revID) + " " + self.userID.username
 
 
 class Reply(models.Model):
@@ -109,6 +110,4 @@ class Reply(models.Model):
     content = models.CharField(max_length=200, blank=False)
 
     def __str__(self):
-        return "repID:"+str(self.repID)+" "+"RName:"+self.revID.resID.name
-
-
+        return "repID:" + str(self.repID) + " " + "RName:" + self.revID.resID.name
