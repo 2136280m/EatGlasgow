@@ -57,15 +57,17 @@ def registration(request):
 
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-
         if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
+            NewUserProfile=UserProfile.objects.create()
+            NewUserProfile.user_id=user.id
+            NewUserProfile.status=request.POST.get('isOwner')
+            NewUserProfile.save()
             registered = True
     else:
         user_form = UserForm()
-    print(user_form)
     return render(request, 'registration.html', {'registered': registered, 'user_form': user_form})
 
 
