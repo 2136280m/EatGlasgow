@@ -4,11 +4,20 @@
 
     <h4>Search results</h4>
 
-	<table>
-		{% for book in results %}
-			<tr>
-				Put links in here <
-			</tr>
-		{% endfor %}
-	</table>
+    <table>
+        {% for Restaurant in results %}
+            <section>
+                <p class="center">
+                <div class="Rimage"><img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/></div>
+                Name:{{ Restaurant.name }}</br>
+                Cuisine:{{ Restaurant.get_cuisine_display }}</br>
+                Address:{{ Restaurant.streetAddress }}</br>
+                PriceRange:{{ Restaurant.get_priceRange_display }}</br>
+                Opening Hours:{{ Restaurant.openingHour }}</br>
+                <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
+                </br>
+                </p>
+            </section
+        {% endfor %}
+    </table>
 {% endblock %}
