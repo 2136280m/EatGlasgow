@@ -21,8 +21,9 @@
 			
 			{% csrf_token %}
 			Please enter your details.</br>
-			
-			{{user_form.as_p}}
+			<table>
+			{{user_form}}
+			</table>
 			<input type="submit" name = "submit" value="Register" />
 		</form>
 	{% endif %}
