@@ -6,7 +6,7 @@
 		background-image: url('../assets/css/images/overlay.png'), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
 }
 .center {
-    text-align: center
+    text-align: center;
 }
 
 .mainpage {
@@ -22,7 +22,8 @@ left {
     background:rgba(255,255,255,0.3);
     background-size: cover;
     height: 100%;
-    border: 5px groove #7a7a7a;
+    border: 5px solid #7a7a7a;
+    border-radius: 25px;
     padding: 10px;
 }
 
@@ -34,22 +35,33 @@ right {
     background:rgba(255,255,255,0.3);
     background-size: cover;
     height: 100%;
-    border: 5px groove #7a7a7a;
+    border: 5px solid #7a7a7a;
     padding: 10px;
+    border-radius: 25px;
 }
 
 .searchBar {
-    margin-left: 25%;
-    margin-right: 25%;
-    align-content: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
     background-color: transparent;
     border: 1px hidden #999;
 }
 .searchBar form{
-    margin-right: 25%;
     margin-left: 25%;
-    border: 5px groove #935d8c;
-    padding: 0px;
+    margin-right: 25%;
+    width: inherit;
+    align-content: center;
+    padding: 5px;
+}
+.searchBar form input{
+    max-width: 100%;
+    width: inherit;
+    padding-left: 1px;
+    padding-right: 1px;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 5px;
 }
 
 section {
@@ -61,26 +73,7 @@ section {
 }
 
 .image {
-    margin-left: 50px;
-    height: 100px;
-    width: 100px;
-}
-
-.image img {
-    width: 100%;
-    height: auto;
-}
-
-.Rimage {
-    float: left;
-    margin-left: 50px;
-    height: 125px;
-    width: 300px;
-}
-
-.Rimage img {
-    width: auto;
-    height: 100%;
+    width: inherit;
 }
 
 .middle {
@@ -89,6 +82,38 @@ section {
     margin-left: 250px;
     margin-right: 250px;
 }
+.restaurant_item{
+    border-radius: 25px;
+    border: 2px solid #949494;
+    padding: 5px;
+    overflow-x:auto;
+}
+.Rinfo{
+    position: relative;
+    float: right;
+    padding: 5px;
+}
+.Rinfo_header{
+    font-weight:bold;
+}
+.Rimage {
+    margin-left: 50px;
+    height: 125px;
+    position: relative;
+    float: left;
+    padding: 5px;
+}
 
+.Rimage img {
+    width: auto;
+    max-width: 300px;
+    max-height: 300px;
+    height: 100%;
+}
 .promoPanel p{
+}
+.logo{
+    width: inherit;
+    background: transparent;
+    border-radius: 25px;
 }
