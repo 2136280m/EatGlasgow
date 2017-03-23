@@ -26,11 +26,12 @@
 		<p>Which 200px</p>
 	</right>
 	
-	<div class="searchBar">
-		<p>
-		This should be the search bar
-		</p>
-	</div>
+    <div id="search">
+        <form method = "get" action = "{% url 'results' %}" enctype = "multipart/form-data">
+            <input id="other" type="text" name="search" placeholder="Type here...">
+            <input id="submitsearch" type="submit" name="Submit" style="margin-left: 1.5%;">
+        </form>
+    </div>
 	<div class="middle"><br></div>
 
 
