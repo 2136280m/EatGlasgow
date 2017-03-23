@@ -1,43 +1,25 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<html>
-<head>
-    <title>
-        {% block title_block %}
-        {% endblock %}
-    </title>
-    {% block head_block %}
-    {% endblock %}
-</head>
+<html> 
+	<head>
+		<title> 
+			{% block title_block %}
+			{% endblock %} 
+		</title>
+		{% block head_block %}
+		{% endblock %}
+	</head>
 <body style="background-color: #f2f2f2;">
-<<<<<<< HEAD
-<div>
-    {% block body_block %}
-    {% endblock %}
-</div>
-
-<div style="position: relative ; bottom: 5px; left: 0px; text-align: center;margin: 0 auto;width: 100%;">
-    <!--In text CSS to make sure the base do not effect other pages -->
-    <HR size="2" width="90%">
-
-    <a href="{% url 'index' %}">Index</a>
-    <a href="{% url 'about' %}">About</a><br>
-    The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
-</div>
-</body>
-=======
-	<div style="margin-bottom: 250px">
+	<div style="position: relative;margin-bottom: 250px;width: 100%;display:block;">
 		{% block body_block %}
 		{% endblock %}
 	</div>
 	
-	<div style="position: absolute ; bottom: 0px; left: 0px; text-align: center;margin: 0 auto;width: 100%">
+	<div style="position: relative ; bottom: 0px; left: 0px; text-align: center;margin: 0 auto;width: 100%;display:block;">
 	<!--In text CSS to make sure the base do not effect other pages -->
 		<HR size="2" width="90%" >
 		<a href="{% url 'index' %}">Index</a>  <a href="{% url 'about' %}">About</a><br>
 		The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
 	</div>
 </body> 
->>>>>>> 4b1b44aa725b1e8ac81ee00aa7a20621255fb770
 </html>
