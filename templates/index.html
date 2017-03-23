@@ -2,61 +2,68 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	EatGlasgow
-{% endblock %} 
+    EatGlasgow
+{% endblock %}
 {% block head_block %}
-	<link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
 {% endblock %}
 
 {% block body_block %}
-<div class="mainpage">
-	<left>
-		<p class="center">
-		{% if user.is_authenticated %}
-		<a href="{% url 'logout' %}">Logout</a></br>
-		{% else %}
-		<a href="{% url 'login' %}">Login</a></br>
-		<a href="{% url 'registration' %}">Registration</a>
-		{% endif %}
-		</p>
-	</left>
-  
-	<right>
-		<div class="image"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>
-		<p>This is the right part of the page</p>
-		<p>Which 200px</p>
-	</right>
-	
-    <div id="search">
-        <form method = "get" action = "{% url 'results' %}" enctype = "multipart/form-data">
-            <input id="other" type="text" name="search" placeholder="Type here...">
-            <input id="submitsearch" type="submit" name="Submit" style="margin-left: 1.5%;">
-        </form>
+    <div class="mainpage">
+        <left>
+            <p class="center">
+                <!--User Profile-->
+                {% if user.is_authenticated %}
+                    <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt="{{ user.get_id }}Photo" height="150px"
+                         width="150px"/>
+                    <p>Welcome, {{ user.get_username }}</p>
+                    <a href="{% url 'logout' %}">Logout</a></br>
+                {% else %}
+                    <p>Welcome, new user. Please log in.</p>
+                    <a href="{% url 'login' %}">Login</a></br>
+                    <a href="{% url 'registration' %}">Registration</a>
+                {% endif %}
+            <!--end UserProfile-->
+            </p>
+        </left>
+
+        <right>
+            <div class="image"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>
+            <p>This is the right part of the page</p>
+            <p>Which 200px</p>
+        </right>
+
+        <div id="search">
+            <form method="get" action="{% url 'results' %}" enctype="multipart/form-data">
+                <input id="other" type="text" name="search" placeholder="Type here...">
+                <input id="submitsearch" type="submit" name="Submit" style="margin-left: 1.5%;">
+            </form>
+        </div>
+        <div class="middle"><br></div>
+
+
+        {% if RestaurantList %}
+            {% for Restaurant in RestaurantList %}
+                {% if Restaurant.status != 0 %}
+                    <section>
+                        <p class="center">
+                        <div class="Rimage"><img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/>
+                        </div>
+                        Name:{{ Restaurant.name }}</br>
+                        Cuisine:{{ Restaurant.get_cuisine_display }}</br>
+                        Address:{{ Restaurant.streetAddress }}</br>
+                        PriceRange:{{ Restaurant.get_priceRange_display }}</br>
+                        Opening Hour:{{ Restaurant.openingHour }}</br>
+                        <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
+                        </br>
+                        </p>
+                    </section>
+                    <div class="middle"><br></div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <section><strong>Opps, Look like we do not have any restaurant yet!</strong></section>
+        {% endif %}
+
     </div>
-	<div class="middle"><br></div>
-
-
-{% if RestaurantList %}
-	{% for Restaurant in RestaurantList %}
-	{% if Restaurant.status != 0 %}
-		<section>
-			<p class="center">
-			<div class="Rimage"><img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name}}Photo"/></div>
-			Name:{{ Restaurant.name }}</br>
-			Cuisine:{{ Restaurant.get_cuisine_display }}</br>
-			Address:{{ Restaurant.streetAddress }}</br>
-			PriceRange:{{ Restaurant.get_priceRange_display }}</br>
-			Opening Hour:{{ Restaurant.openingHour }}</br>
-			<a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
-			</br>
-			</p>
-		</section>
-		<div class="middle"><br></div>
-	{% endif%}
-	{% endfor %}
-	{% else %}
-		<section><strong>Opps, Look like we do not have any restaurant yet!</strong></section>
-{% endif%}
-
-</div>
 {% endblock %}
