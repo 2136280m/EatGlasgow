@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html> 
-	<head>
-		<title> 
-			{% block title_block %}
-			{% endblock %} 
-		</title>
-		{% block head_block %}
-		{% endblock %}
-	</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<html>
+<head>
+    <title>
+        {% block title_block %}
+        {% endblock %}
+    </title>
+    {% block head_block %}
+    {% endblock %}
+</head>
 <body style="background-color: #f2f2f2;">
-	<div>
-		{% block body_block %}
-		{% endblock %}
-	</div>
-	
-	<div style="position: relative ; bottom: 5px; left: 0px; text-align: center;margin: 0 auto;width: 100%;">
-	<!--In text CSS to make sure the base do not effect other pages -->
-		<HR size="2" width="90%" >
-		<a href="{% url 'index' %}">Index</a>  <a href="{% url 'about' %}">About</a><br>
-		The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
-	</div>
-</body> 
+<div>
+    {% block body_block %}
+    {% endblock %}
+</div>
+
+<div style="position: relative ; bottom: 5px; left: 0px; text-align: center;margin: 0 auto;width: 100%;">
+    <!--In text CSS to make sure the base do not effect other pages -->
+    <HR size="2" width="90%">
+
+    <a href="{% url 'index' %}">Index</a>
+    <a href="{% url 'about' %}">About</a><br>
+    The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
+</div>
+</body>
 </html>
