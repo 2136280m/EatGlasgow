@@ -10,15 +10,23 @@
 
 {% block body_block %}
 {% if RestaurantList %}
-<H1 class="center">{{ RestaurantList.name }}</H1>
 
-<div class="inf">
-	<img class="center" src="{{ RestaurantList.photo.url }}" alt="{{ Restaurant.name}}Photo"/></br>
+<section> 
+	<H1>{{ RestaurantList.name }}</H1>
+	<HR size="1" width="100%" >
 	{{ RestaurantList.get_cuisine_display }}</br>
 	{{ RestaurantList.streetAddress }}</br>
 	{{ RestaurantList.get_priceRange_display }}</br>
 	{{ RestaurantList.openingHour }}</br>
-</div>
-{% endif%}
+</section> 
+<div class="middle"><br></div>
+<section> 
+	<div class="imgbox "><img class="center" src="{{ RestaurantList.photo.url }}" alt="{{ Restaurant.name}}Photo"/></div>
+	{{ RestaurantList.description }}
+	</section> 
+<div class="middle"><br></div>
 
+
+
+{% endif%}
 {% endblock %}

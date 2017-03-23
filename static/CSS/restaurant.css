@@ -1,24 +1,33 @@
+
 section {
 	display: block;
     	margin: 0 auto;
-	width: 1000px;
-	height: auto;
+	width: 800px;
+	background-color: #FFFFFF;
+	border: 1px solid #999;
+	hight: auto;
 }
 
 .center {
 	text-align: center;
 }
 
-.inf {
-	position: relative;
-	display: block;
-	margin: 0 auto;
-	width: auto;
+
+.imgbox {
+	margin-top: 25px;
+	margin-left: 25px;
+	height: 100%;
+	background-color: #FFFFFF;
 }
 
-.inf img {
+.imgbox img {
+    width: auto;
+    height: 100%;
+}
+
+.middle {
 	position: relative;
-	display: block;
-    	margin-left: auto;
-   	margin-right: auto
+	min-height: 30px;
+	margin-left: 250px;
+	margin-right: 250px;
 }

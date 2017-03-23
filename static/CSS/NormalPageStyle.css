@@ -1,3 +1,7 @@
+.center {
+	text-align: center
+}
+
 .mainpage {
 	position: relative;
 	min-width:1000px
@@ -6,21 +10,30 @@ left {
 	position: absolute;
 	left: 0px;
 	width: 200px;
+	background-color: #FFFFFF;
+	height: 100%;
+	border: 1px solid #999;
 }
 right {
 	position: absolute;
 	right: 0px;
 	width: 200px;
+	background-color: #FFFFFF;
+	height: 100%;
+	border: 1px solid #999;
 }
 .searchBar{
-	margin-left: 200px;
-	margin-right: 200px;
+	margin-left: 250px;
+	margin-right: 250px;
+	background-color: #FFFFFF;
+	border: 1px solid #999;
 }
 section {
 	position: relative;
-	margin-left: 200px;
-	margin-right: 200px;
+	margin-left: 250px;
+	margin-right: 250px;
 	border: 1px solid #999;
+	background-color: #FFFFFF;
 }
 .image {
 	margin-left: 50px;
@@ -44,4 +57,6 @@ section {
 .middle {
 	position: relative;
 	min-height: 30px;
+	margin-left: 250px;
+	margin-right: 250px;
 }

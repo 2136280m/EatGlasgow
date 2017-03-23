@@ -109,7 +109,7 @@ class Review(models.Model):
     rating = models.IntegerField(choices=RATING_CHOICES, default=0)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
-    def __str__(self):
+    def __int__(self):
         return self.revID
 
 
