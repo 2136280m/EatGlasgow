@@ -31,6 +31,9 @@
                         <a href="{% url 'registration' %}">Register</a>
                     </div>
                 {% endif %}
+                {%  if user.userprofile.status == 2 %}
+                    <a href = 'owner.html'> Your Restaurant </a>
+                {%  endif %}
             <!--end UserProfile-->
             </p>
         </left>

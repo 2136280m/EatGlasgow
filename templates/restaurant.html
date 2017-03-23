@@ -58,14 +58,14 @@
 					<img src="{{ Review.photo.url }}" alt="{{ Restaurant.name.url }}Photo"/>
 				{% endif %}
 			</section> 
-			<section> 
 				{% for reply in replyList %}
 					{% if Review.revID == reply.revID.revID %}
+					<section> 
 						Re: {{ Review.userID }} by {{ reply.ownerID }}<span style="float:right;">{{ reply.repDate }}</span><br>
 						{{ reply.content }}
+						</section> 
 					{% endif %}
 				{% endfor %}
-			</section> 
 			<div class="middle"><br></div>
 		{% endif %}
 	{% endfor %}
