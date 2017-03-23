@@ -20,7 +20,7 @@ def about(request):
 def restaurant(request, RestaurantID):
 	try:
 		RestaurantList=Restaurant.objects.get(resID=RestaurantID)
-		ReviewList=Review.objects.filter(resID=RestaurantID)
+		ReviewList=Review.objects.filter(resID=RestaurantID).order_by('-reviewDate')
 		context_dict = {'RestaurantList':RestaurantList, 'ReviewList':ReviewList}
 		return render(request,'restaurant.html', context_dict)
 	except:
@@ -78,9 +78,9 @@ def registration(request):
 	return render(request, 'registration.html', {'registered': registered,'user_form': user_form})
 			
 def random_restaurant():
-    maxID = Restaurant.objects.last()
+    maxID = Restaurant.objects.last().resID
     restaurant = []
-    if (maxID != None and maxID > 5):
+    if (maxID > 5):
         randomint = set()  ##generat random int without repeating
         while len(randomint) < 5:
             randomint.add(randint(1, maxID))

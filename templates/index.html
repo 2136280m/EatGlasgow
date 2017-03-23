@@ -32,6 +32,7 @@
 
 {% if RestaurantList %}
 	{% for Restaurant in RestaurantList %}
+	{% if Restaurant.status != 0 %}
 		<section>
 			<p class="center">
 			<div class="Rimage"><img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name}}Photo"/></div>
@@ -45,8 +46,9 @@
 			</p>
 		</section>
 		<div class="middle"><br></div>
-	 {% endfor %}
-	 {% else %}
+	{% endif%}
+	{% endfor %}
+	{% else %}
 		<section><strong>Opps, Look like we do not have any restaurant yet!</strong></section>
 {% endif%}
 

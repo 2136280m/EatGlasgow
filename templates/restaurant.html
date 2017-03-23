@@ -13,10 +13,10 @@
 <section> 
 	<H1>{{ RestaurantList.name }}</H1>
 	<HR size="1" width="100%" >
-	{{ RestaurantList.get_cuisine_display }}</br>
-	{{ RestaurantList.streetAddress }}</br>
-	{{ RestaurantList.get_priceRange_display }}</br>
-	{{ RestaurantList.openingHour }}</br>
+	Cuisine:{{ RestaurantList.get_cuisine_display }}</br>
+	Address:{{ RestaurantList.streetAddress }}</br>
+	Price Range:{{ RestaurantList.get_priceRange_display }}</br>
+	OpeningHour:{{ RestaurantList.openingHour }}</br>
 </section> 
 <div class="middle"><br></div>
 <section> 
@@ -27,14 +27,18 @@
 <!-- view block here  -->
 {% if ReviewList %}
 	{% for Review in ReviewList %}
+	{% if Review.status == 1 %}
 	<section> 
-		Name:{{ Review.userID }} <span style="float:right;">{{ Review.reviewDate }}</span><br>
-		
+		Name: {{ Review.userID }} <span style="float:right;">{{ Review.reviewDate }}</span><br>
+		Rating: {{ Review.get_rating_display }}
 		<HR size="1" width="100%" >
 		{{ Review.content }}
+		{% if Review.photo %}
 		<HR size="1" width="100%" >
 		<img src="{{ Review.photo.url }}" alt="{{ Restaurant.name.url }}Photo"/>
+		{% endif%}
 	</section> 
+	{% endif%}
 	{% endfor %}
 	<div class="middle"><br></div>
 {% endif%}
