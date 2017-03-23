@@ -1,6 +1,7 @@
 from django.contrib import admin
 from EatGlasgowApp.models import UserProfile
 from EatGlasgowApp.models import *
+
 # Register your models here
 
 
