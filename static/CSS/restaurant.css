@@ -30,6 +30,7 @@ section {
 	min-height: 30px;
 	margin-left: 250px;
 	margin-right: 250px;
+	display:hidden;
 }
 
 textarea {
