@@ -29,7 +29,6 @@ urlpatterns = [
     url(r'^login$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'^registration$', views.registration, name='registration'),
-    url(r'^addRestaurant$', views.addRestaurant, name='addRestaurant'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

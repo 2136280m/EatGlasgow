@@ -62,6 +62,10 @@ def registration(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
+            NewUserProfile=UserProfile.objects.create()
+            NewUserProfile.user_id=user.id
+            NewUserProfile.status=request.POST.get('isOwner')
+            NewUserProfile.save()
             registered = True
     else:
         user_form = UserForm()
