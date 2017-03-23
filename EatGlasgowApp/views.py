@@ -82,6 +82,7 @@ def random_restaurant():
             restaurant_List.append(Restaurant.objects.get(resID=RN))
     return restaurant_List
 
+
 @login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
@@ -89,5 +90,16 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
 
+
 def add_restaurant(request):
     return render(request, 'addRestaurant.html')
+
+
+def search_results(reuqest):
+
+
+    context = {}
+    # this is what search bar is called
+    search = request.GET.get('search')
+    context['results'] = Book.objects.filer(name__icontains=search)
+    return render(request, 'Results.html', context=context)
