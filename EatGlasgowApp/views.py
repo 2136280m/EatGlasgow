@@ -105,7 +105,20 @@ def user_logout(request):
 
 @login_required
 def add_restaurant(request):
-    return render(request, 'addRestaurant.html')
+    if request.method == 'POST':
+        addRestaurant_from = RestaurantForm(data=request.POST)
+        if addRestaurant_from.is_valid():
+            restaurant = addRestaurant_from.save()
+            NewRestaurant = Restaurant.objects.create()
+            NewRestaurant.cuisine = request.POST.get('cuisine')
+            NewRestaurant.priceRange = request.POST.get('priceRange')
+            NewRestaurant.status = request.POST.get('status')
+
+            NewRestaurant.save()
+
+    else:
+        print(form.errors)
+    return render(request, 'addRestaurant.html', {'addRestaurant_form': addRestaurant_form})
 
 def search_results(request):
     context = {}

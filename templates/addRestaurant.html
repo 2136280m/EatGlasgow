@@ -11,7 +11,7 @@
 
 <div>
 {% block body_block %}
-	<form>
+	<form action="{% url 'addRestaurant' %}" id="addRestaurant_form" method="post">
 	<table>
 	<tr>
 		<td>Restaurant Name: </td>
@@ -56,6 +56,8 @@
 			</select>
 		</td>
 	</tr>
-	</table>
-	</div>
+	</table>	
 	</form>
+	<input type="submit" name="submit" value="Add Restaurant">
+</div>
+
