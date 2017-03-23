@@ -63,8 +63,8 @@ class Restaurant(models.Model):
     status = models.IntegerField(choices=RES_STATUS_CHOICES, default=1)
     description = models.CharField(max_length=500, blank=True)
 
-    def __int__(self):
-        return self.resID
+    def __str__(self):
+        return "ID:"+str(self.resID)+" "+"Name:"+self.name
 
 
 def one_week_hence():
@@ -85,8 +85,8 @@ class Promotion(models.Model):
     description = models.CharField(max_length=200, blank=True)
     status = models.IntegerField(choices=PROM_STATUS_CHOICES, default=1)
 
-    def __int__(self):
-        return self.promotionID
+    def __str__(self):
+        return str(self.promotionID)+" "+self.resID.name
 
 
 class Review(models.Model):
@@ -109,8 +109,8 @@ class Review(models.Model):
     rating = models.IntegerField(choices=RATING_CHOICES, default=0)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
-    def __int__(self):
-        return self.revID
+    def __str__(self):
+        return str(self.revID)+" "+self.userID.username
 
 
 class Reply(models.Model):
@@ -120,7 +120,7 @@ class Reply(models.Model):
     repDate = models.DateTimeField(default=timezone.now, editable=False)
     content = models.CharField(max_length=200, blank=False)
 
-    def __int__(self):
-        return self.repID
+    def __str__(self):
+        return "repID:"+str(self.repID)+" "+"RName:"+self.revID.resID.name
 
 
