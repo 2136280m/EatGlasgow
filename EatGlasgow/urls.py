@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
 	url(r'^about/', views.about, name='about'),
-	url(r'^restaurant/(?P<RestaurantID>[\w\-]+)$', views.restaurant, name='restaurant'),
+	url(r'^restaurant-(?P<RestaurantID>[\w\-]+)$', views.restaurant, name='restaurant'),
 	
     url(r'^login$', views.login, name='login'),
 	url(r'^registration$', views.registration, name='registration'),
