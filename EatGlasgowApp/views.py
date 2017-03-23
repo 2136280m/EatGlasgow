@@ -98,9 +98,9 @@ def user_logout(request):
 
 def add_restaurant(request):
     if request.method == 'POST':
-        addRestaurant_from = RestaurantForm(data=request.POST)
-        if addRestaurant_from.is_valid():
-            restaurant = addRestaurant_from.save()
+        addRestaurant_form = RestaurantForm(data=request.POST)
+        if addRestaurant_form.is_valid():
+            restaurant = addRestaurant_form.save()
             NewRestaurant = Restaurant.objects.create()
             NewRestaurant.cuisine = request.POST.get('cuisine')
             NewRestaurant.priceRange = request.POST.get('priceRange')
@@ -109,7 +109,7 @@ def add_restaurant(request):
             NewRestaurant.save()
 
     else:
-        print(form.errors)
+        addRestaurant_form = RestaurantForm()
     return render(request, 'addRestaurant.html', {'addRestaurant_form': addRestaurant_form})
 
 def search_results(request):
