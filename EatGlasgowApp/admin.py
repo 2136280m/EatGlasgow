@@ -5,7 +5,6 @@ from EatGlasgowApp.models import *
 
 
 admin.site.register(UserProfile)
-admin.site.register(Owner)
 admin.site.register(Restaurant)
 admin.site.register(Promotion)
 admin.site.register(Review)

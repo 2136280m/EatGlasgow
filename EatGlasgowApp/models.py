@@ -8,8 +8,9 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     STATUS_CHOICES = (
+        (2, 'isOwner'),
         (1, 'Stored'),
-        (0, 'Deleted'),
+        (0, 'isLocked'),
     )
     # links userprofile to a user model instance.
     user = models.OneToOneField(User, primary_key=True)
@@ -19,19 +20,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-class Owner(models.Model):
-    OWNER_CHOICES = (
-        (1, 'isOwner'),
-        (0, 'isLocked'),
-    )
-    user = models.OneToOneField(UserProfile, primary_key=True)
-
-    isOwner = models.IntegerField(choices=OWNER_CHOICES, default=1)
-
-    def __str__(self):
-        return self.user.user.username
 
 
 class Restaurant(models.Model):
@@ -53,7 +41,7 @@ class Restaurant(models.Model):
     )
 
     resID = models.AutoField(primary_key=True)
-    owner = models.ForeignKey(Owner)
+    owner = models.ForeignKey(User)
     name = models.CharField(max_length=100,blank=False)
     photo = models.ImageField(upload_to='restaurant_images', blank=False)
     cuisine = models.CharField(max_length=2, choices=CUISINE_CHOICES,blank=False)

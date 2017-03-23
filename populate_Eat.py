@@ -7,7 +7,7 @@ import django
 
 django.setup()
 import random
-from EatGlasgowApp.models import UserProfile, Owner, Restaurant, Promotion, Review, Reply
+from EatGlasgowApp.models import UserProfile, Restaurant, Promotion, Review, Reply
 from django.contrib.auth.models import User
 
 
@@ -21,8 +21,6 @@ def populate():
         {"username": "guest1", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1}
     ]
 
-    owners = [{"username": "nickyvo"}, {"username": "alex"},
-              {"username": "tom"}, {"username": "caroline"}]
     restaurants = [
         {"name": "Weather Spoon", "owner": "nickyvo", "photo": "defRes.jpeg",
          "cuisine": "WE", "address": "123 Byres Road Glasgow",
@@ -62,9 +60,6 @@ def populate():
 
     for user in users:
         add_user_and_profile(user["username"], user["pass"], user["avatar"])
-
-    for owner in owners:
-        add_owner(owner["username"])
 
     for res in restaurants:
         add_res(res["owner"], res["name"], res["photo"], res["cuisine"], res["address"], res["price"])
