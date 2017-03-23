@@ -24,6 +24,25 @@
 	{{ RestaurantList.description }}
 </section> 
 <div class="middle"><br></div>
+<!-- add view block here  -->
+{% if user.is_authenticated %}
+<section> 
+<form id="Review_form" method="post" action="{% url 'restaurant' RestaurantList.resID %}" enctype="multipart/form-data">
+{% csrf_token %}
+<textarea name="review_text"></textarea>
+<select name="rating">
+  <option value =0 SELECTED>Not Rated</option>
+  <option value =1>Poor</option>
+  <option value=2>Okay</option>
+  <option value=3>Excellent</option>
+</select>
+<input type="submit" value="Send" />
+</form>
+</section> 
+{% endif %}
+
+
+<!-- add view block end here  -->
 <!-- view block here  -->
 
 {% if ReviewList %}
