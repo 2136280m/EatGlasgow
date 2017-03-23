@@ -32,7 +32,7 @@
                     </div>
                 {% endif %}
                 {%  if user.userprofile.status == 2 %}
-                    <a href = 'owner.html'> Your Restaurant </a>
+                    <a href = {% url 'your_restaurant' %}> Your Restaurant </a>
                 {%  endif %}
             <!--end UserProfile-->
             </p>
