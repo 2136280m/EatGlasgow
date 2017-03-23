@@ -1,3 +1,23 @@
 .helptext {
 	display:none	
 }
+
+table { 
+	text-align: left;
+	margin: 0 auto; 
+}
+form {
+	text-align: center;
+	margin: 0 auto; 
+}
+.registration {
+	margin: 0 auto; 
+	height: 500px;
+	width: 768px;
+	background-color: #FFFFFF;
+	border: 1px solid #999;
+}
+
+.center {
+	text-align: center;
+}

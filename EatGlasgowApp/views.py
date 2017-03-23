@@ -112,12 +112,9 @@ def add_restaurant(request):
         print(form.errors)
     return render(request, 'addRestaurant.html', {'addRestaurant_form': addRestaurant_form})
 
-
-def search_results(reuqest):
-
-
+def search_results(request):
     context = {}
     # this is what search bar is called
     search = request.GET.get('search')
-    context['results'] = Book.objects.filer(name__icontains=search)
-    return render(request, 'Results.html', context=context)
+    context['results'] = Restaurant.objects.filter(name__icontains=search)
+    return render(request, 'results.html', context=context)
