@@ -1,5 +1,5 @@
 db.sqlite3
-.idea
+.idea/
 .pyc
 EatGlasgow/__pycache__/
 EatGlasgowApp/__pycache__/
