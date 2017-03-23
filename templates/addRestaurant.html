@@ -3,15 +3,14 @@
 
 {% block title_block %}
 	<H2>Add Restaurant</H2>
-	</title>
+{% endblock %}
 
 
 	<link rel="stylesheet" type="text/css" href="{% static "CSS/AddRestaurant.css" %}" />
-{% endBlock %}
 
 <div>
 {% block body_block %}
-	<form action="{% url 'addRestaurant' %}" id="addRestaurant_form" method="post">
+	<form action="{% url 'addRestaurant' %}" id="addRestaurant_form" enctype="multipart/form-data">
 	<table>
 	<tr>
 		<td>Restaurant Name: </td>
@@ -56,8 +55,10 @@
 			</select>
 		</td>
 	</tr>
+	
 	</table>	
 	</form>
 	<input type="submit" name="submit" value="Add Restaurant">
 </div>
 
+{% endblock %}
