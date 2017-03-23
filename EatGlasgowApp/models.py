@@ -61,8 +61,9 @@ class Restaurant(models.Model):
     priceRange = models.IntegerField(choices=RANGE_CHOICES, default=0)
     openingHour = models.CharField(max_length=100, blank=True)
     status = models.IntegerField(choices=RES_STATUS_CHOICES, default=1)
+    description = models.CharField(max_length=500, blank=True)
 
-    def __str__(self):
+    def __int__(self):
         return self.resID
 
 

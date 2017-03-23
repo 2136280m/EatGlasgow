@@ -27,36 +27,26 @@
 		This should be the search bar
 		</p>
 	</div>
- <!--Example-->
-		<section>
-			<p>
-			<div class="Rimage"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>
-			{{ Name }}</br>
-			{{ Cuisine }}</br>
-			{{ StressAdress }}</br>
-			{{ PriceRange }}</br>
-			{{ OpeningHours }}</br>
-			{{ Status }}</br>
-			<a href="{% url 'restaurant' RestaurantID %}" class="center">More Information</a>
-			</p>
-		</section>
 
- <!--Real one-->
+
 {% if RestaurantList %}
 	{% for Restaurant in RestaurantList %}
 		<section>
-			<p>
-			<div class="Rimage"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>
-			{{ Name }}</br>
-			{{ Cuisine }}</br>
-			{{ StressAdress }}</br>
-			{{ PriceRange }}</br>
-			{{ OpeningHours }}</br>
-			{{ Status }}</br>
-			{{ logo }}
+			<p class="center">
+			<div class="Rimage"><img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name}}Photo"/></div>
+			Name:{{ Restaurant.name }}</br>
+			Cuisine:{{ Restaurant.get_cuisine_display }}</br>
+			Address:{{ Restaurant.streetAddress }}</br>
+			PriceRange:{{ Restaurant.get_priceRange_display }}</br>
+			Opening Hour:{{ Restaurant.openingHour }}</br>
+			<a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
+			</br>
 			</p>
 		</section>
+		<div class="middle"><br></div>
 	 {% endfor %}
+	 {% else %}
+		<section><strong>Opps, Look like we do not have any restaurant yet!</strong></section>
 {% endif%}
 
 </div>

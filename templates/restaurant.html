@@ -9,12 +9,16 @@
 {% endblock %} 
 
 {% block body_block %}
-<section>
-	<H1>{{ Name }}</H1>
-	{{ Cuisine }}</br>
-	{{ StressAdress }}</br>
-	{{ PriceRange }}</br>
-	{{ OpeningHours }}</br>
-	{{ Status }}</br>
-</section>
+{% if RestaurantList %}
+<H1 class="center">{{ RestaurantList.name }}</H1>
+
+<div class="inf">
+	<img class="center" src="{{ RestaurantList.photo.url }}" alt="{{ Restaurant.name}}Photo"/></br>
+	{{ RestaurantList.get_cuisine_display }}</br>
+	{{ RestaurantList.streetAddress }}</br>
+	{{ RestaurantList.get_priceRange_display }}</br>
+	{{ RestaurantList.openingHour }}</br>
+</div>
+{% endif%}
+
 {% endblock %}

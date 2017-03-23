@@ -1,6 +1,6 @@
 .mainpage {
 	position: relative;
-	min-width:600px
+	min-width:1000px
 }
 left {
 	position: absolute;
@@ -17,6 +17,7 @@ right {
 	margin-right: 200px;
 }
 section {
+	position: relative;
 	margin-left: 200px;
 	margin-right: 200px;
 	border: 1px solid #999;
@@ -32,10 +33,15 @@ section {
 }
 .Rimage {
 	float: left;
+	margin-left: 50px;
 	height: 125px;
 	width: 300px;
 }
 .Rimage img {
     width: auto;
     height: 100%;
+}
+.middle {
+	position: relative;
+	min-height: 30px;
 }

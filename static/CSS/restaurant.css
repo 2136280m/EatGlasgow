@@ -1,4 +1,24 @@
 section {
-	margin-left: 250px;
-	margin-right: 250px;
+	display: block;
+    	margin: 0 auto;
+	width: 1000px;
+	height: auto;
+}
+
+.center {
+	text-align: center;
+}
+
+.inf {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: auto;
+}
+
+.inf img {
+	position: relative;
+	display: block;
+    	margin-left: auto;
+   	margin-right: auto
 }

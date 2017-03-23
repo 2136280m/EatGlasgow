@@ -4,31 +4,24 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django import forms
 from django.contrib.auth.models import User
-from EatGlasgowApp.models import UserProfile
-from EatGlasgowApp.forms import UserForm
+from EatGlasgowApp.models import *
+from EatGlasgowApp.forms import *
+
+from random import randint
 
 def index(request):
-    RestaurantList={}
-    restaurantExample = {"RestaurantID":1, "Name":"Apple", "Cuisine":"Chinese",
-        "StressAdress":"Glasogw", "PriceRange":"Expensive", "OpeningHours":"7am-8am",
-        "Status":1,"logo":"logo.jpg"}
-    # Render the response and send it back!
-    return render(request, 'index.html', restaurantExample)
+	RestaurantList=random_restaurant()
+	context_dict = {'RestaurantList':RestaurantList}
+	return render(request, 'index.html', context_dict)
 
 def about(request):
 	return render(request, 'about.html')
 	
 def restaurant(request, RestaurantID):
-	
-	restaurantExample = {"RestaurantID":1, "Name":"Apple", "Cuisine":"Chinese",
-    "StressAdress":"Chinese", "PriceRange":"Expensive", "OpeningHours":"7am-8am",
-    "Status":1,"logo":"logo.jpg"}
 	try:
-		if(int(RestaurantID)==restaurantExample["RestaurantID"]):
-			return render(request,'restaurant.html', restaurantExample)
-		else:
-			return HttpResponse("There is not such restaurant")
-	except ValueError:
+		context_dict = {'RestaurantList':Restaurant.objects.get(resID=RestaurantID)}
+		return render(request,'restaurant.html', context_dict)
+	except:
 		return HttpResponse("There is not such restaurant")
 
 
@@ -79,9 +72,30 @@ def registration(request):
 			registered = True
 	else:
 		user_form = UserForm()
+	print(user_form)
+	return render(request, 'registration.html', {'registered': registered,'user_form': user_form})
 			
-	return render(request, 'registration.html',
-			{'registered': registered,'user_form': user_form})
+def random_restaurant():
+	maxID=Restaurant.objects.last().resID
+	restaurant=[]
+	if maxID>5:
+		randomint=set()##generat random int without repeating
+		while len(randomint) < 5:
+			randomint.add(randint(1,maxID))
+		for RN in randomint:
+			restaurant.append(Restaurant.objects.get(resID=RN))
+	else:
+		restaurant=list(Restaurant.objects.all())
+	
+	return(restaurant)
+	
+			
+			
+		
+		
+	
+	
+	
 
 	
 	

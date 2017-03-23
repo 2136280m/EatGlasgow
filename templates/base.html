@@ -8,21 +8,18 @@
 		</title>
 		{% block head_block %}
 		{% endblock %}
-		<style>
-			.center {text-align: center;}
-		</style>
 	</head>
 <body>
-	 <div>
+	<div>
 		{% block body_block %}
 		{% endblock %}
 	</div>
-	<HR size="2" width="90%">
-	<div class="center">
-	<p>
-		<a href="{% url 'index' %}">Index</a>  <a href="{% url 'about' %}">About</a>
-	</p>
-	 The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
-	 <div>
+	
+	<div style="position: fixed;bottom: 0;text-align: center;margin: 0 auto;width: 100%;">
+	<!--In text CSS to make sure the base do not effect other pages -->
+		<HR size="2" width="90%" >
+		<a href="{% url 'index' %}">Index</a>  <a href="{% url 'about' %}">About</a><br>
+		The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall
+	</div>
 </body> 
 </html>

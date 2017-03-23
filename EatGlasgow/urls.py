@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^login$', views.login, name='login'),
 	url(r'^registration$', views.registration, name='registration'),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
