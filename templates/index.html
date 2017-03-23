@@ -14,7 +14,7 @@
             <p class="center">
                 <!--User Profile-->
                 {% if user.is_authenticated %}
-                    <div>
+                    <div style="text-align: center">
                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt="{{ user.get_id }}Photo"
                              height="150px"
                              width="150px"/>
@@ -22,7 +22,7 @@
                         <a href="{% url 'logout' %}">Logout</a></br>
                     </div>
                 {% else %}
-                    <div>
+                    <div style="text-align: center">
                         <img src="{{ MEDIA_URL }}profile_images\\defUser.jpeg" alt="{{ user.get_id }}Photo"
                              height="150px"
                              width="150px"/>
@@ -32,7 +32,9 @@
                     </div>
                 {% endif %}
                 {%  if user.userprofile.status == 2 %}
+                    <div style="text-align: center">
                     <a href = {% url 'your_restaurant' %}> Your Restaurant </a>
+                    </div>
                 {%  endif %}
             <!--end UserProfile-->
             </p>
@@ -41,9 +43,8 @@
         <right>
             <div class="image"><img class="logo" src="{% static "image/logo.png" %}" alt="Logo"/></div>
             <br/>
-            <div class="promoPanel">
-                <p>This is the right part of the page</p>
-                <p>Which is 200px</p>
+            <div style="text-align: center; height: 80%; border: solid 5px #775430; background: #dca53c">
+                <h3>Please contact the administrator for advertisement banner.</h3>
             </div>
         </right>
 
