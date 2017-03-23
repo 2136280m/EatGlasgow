@@ -80,22 +80,15 @@ def add_user_and_profile(username, password, avatar):
     u.save()
     up = UserProfile.objects.create()
     up.user_id = u.id
-    up.avatar = avatar
+    up.avatar = "profile_images\\"+avatar
     up.save()
-
-
-def add_owner(username):
-    u = User.objects.get(username=username)
-    o = Owner.objects.create()
-    o.user_id = u.id
-    o.save()
 
 
 def add_res(owner, name, photo, cuisine, add, price):
     u = User.objects.get(username=owner)
     r = Restaurant.objects.create(owner_id=u.id)
     r.name = name
-    r.photo = photo
+    r.photo = "restaurant_images\\"+photo
     r.cuisine = cuisine
     r.streetAddress = add
     r.priceRange = price
@@ -114,6 +107,7 @@ def add_review(user, res, content, photo, rating):
     res = Restaurant.objects.get(resID=res)
     rev = Review.objects.create(userID_id=u.id, resID_id=res.resID)
     rev.content = content
+    rev.photo = "review_images\\defRev.jpeg"
     rev.rating = rating
     rev.save()
 
