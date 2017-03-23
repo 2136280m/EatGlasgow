@@ -26,7 +26,10 @@ def restaurant(request, RestaurantID):
     ReviewList = Review.objects.filter(resID=RestaurantID).order_by('-reviewDate')  ##ReviewList by RestaurantID
     replyList = []
     for x in ReviewList:
-        replyList.append(Reply.objects.filter(revID=x.revID))
+        try:
+            replyList.append(Reply.objects.get(revID=x.revID))
+        except Reply.DoesNotExist:
+            replyList.append(None)
     print(replyList)
     context_dict = {'RestaurantList': RestaurantList, 'ReviewList': ReviewList, 'replyList': replyList}
 
