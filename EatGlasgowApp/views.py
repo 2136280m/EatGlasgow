@@ -22,6 +22,13 @@ def about(request):
 
 
 def restaurant(request, RestaurantID):
+    if request.method == 'POST':
+        if request.user.is_authenticated():
+            res = Restaurant.objects.get(resID=RestaurantID)
+            NewReview=Review.objects.create(userID = request.user, resID=res)
+            NewReview.content = request.POST.get('review_text')
+            NewReview.rating = request.POST.get('rating')
+            NewReview.save()
     RestaurantList = Restaurant.objects.get(resID=RestaurantID)  ##RestaurantList by RestaurantID
     ReviewList = Review.objects.filter(resID=RestaurantID).order_by('-reviewDate')  ##ReviewList by RestaurantID
     replyList = []
@@ -31,6 +38,7 @@ def restaurant(request, RestaurantID):
         except Reply.DoesNotExist:
             replyList.append(None)
     print(replyList)
+    
     context_dict = {'RestaurantList': RestaurantList, 'ReviewList': ReviewList, 'replyList': replyList}
 
     return render(request, 'restaurant.html', context_dict)
@@ -95,7 +103,7 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
 
-
+@login_required
 def add_restaurant(request):
     if request.method == 'POST':
         addRestaurant_from = RestaurantForm(data=request.POST)
