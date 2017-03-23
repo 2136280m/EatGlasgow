@@ -28,6 +28,6 @@ section {
 .middle {
 	position: relative;
 	min-height: 30px;
-	margin-left: 250px;
-	margin-right: 250px;
+	margin-left: 25%;
+	margin-right: 25%;
 }

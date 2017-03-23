@@ -9,12 +9,12 @@
     {% block head_block %}
     {% endblock %}
 </head>
-<body style="background-color: #f2f2f2;">
+<body class="global">
 <div style="position: relative;margin-bottom: 250px;width: 100%;display:block;">
-    <div id="search">
+    <div class="searchBar" id="search">
         <form method="get" action="{% url 'results' %}" enctype="multipart/form-data">
             <input id="other" type="text" name="search" placeholder="Type here...">
-            <input id="submitsearch" type="submit" name="Submit" style="margin-left: 1.5%;">
+            <input id="submitsearch" type="submit" name="Submit">
         </form>
     </div>
     {% block body_block %}
