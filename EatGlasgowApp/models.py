@@ -85,7 +85,7 @@ class Promotion(models.Model):
     description = models.CharField(max_length=200, blank=True)
     status = models.IntegerField(choices=PROM_STATUS_CHOICES, default=1)
 
-    def __str__(self):
+    def __int__(self):
         return self.promotionID
 
 
@@ -120,7 +120,7 @@ class Reply(models.Model):
     repDate = models.DateTimeField(default=timezone.now, editable=False)
     content = models.CharField(max_length=200, blank=False)
 
-    def __str__(self):
+    def __int__(self):
         return self.repID
 
 

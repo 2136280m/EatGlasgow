@@ -10,7 +10,6 @@
 
 {% block body_block %}
 {% if RestaurantList %}
-
 <section> 
 	<H1>{{ RestaurantList.name }}</H1>
 	<HR size="1" width="100%" >
@@ -23,10 +22,22 @@
 <section> 
 	<div class="imgbox "><img class="center" src="{{ RestaurantList.photo.url }}" alt="{{ Restaurant.name}}Photo"/></div>
 	{{ RestaurantList.description }}
-	</section> 
+</section> 
 <div class="middle"><br></div>
-
-
+<!-- view block here  -->
+{% if ReviewList %}
+	{% for Review in ReviewList %}
+	<section> 
+		Name:{{ Review.userID }} <span style="float:right;">{{ Review.reviewDate }}</span><br>
+		
+		<HR size="1" width="100%" >
+		{{ Review.content }}
+		<HR size="1" width="100%" >
+		<img src="{{ Review.photo.url }}" alt="{{ Restaurant.name.url }}Photo"/>
+	</section> 
+	{% endfor %}
+	<div class="middle"><br></div>
+{% endif%}
 
 {% endif%}
 {% endblock %}

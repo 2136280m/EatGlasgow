@@ -19,7 +19,9 @@ def about(request):
 	
 def restaurant(request, RestaurantID):
 	try:
-		context_dict = {'RestaurantList':Restaurant.objects.get(resID=RestaurantID)}
+		RestaurantList=Restaurant.objects.get(resID=RestaurantID)
+		ReviewList=Review.objects.filter(resID=RestaurantID)
+		context_dict = {'RestaurantList':RestaurantList, 'ReviewList':ReviewList}
 		return render(request,'restaurant.html', context_dict)
 	except:
 		return HttpResponse("There is not such restaurant")
@@ -76,18 +78,18 @@ def registration(request):
 	return render(request, 'registration.html', {'registered': registered,'user_form': user_form})
 			
 def random_restaurant():
-	maxID=Restaurant.objects.last().resID
-	restaurant=[]
-	if maxID>5:
-		randomint=set()##generat random int without repeating
-		while len(randomint) < 5:
-			randomint.add(randint(1,maxID))
-		for RN in randomint:
-			restaurant.append(Restaurant.objects.get(resID=RN))
-	else:
-		restaurant=list(Restaurant.objects.all())
-	
-	return(restaurant)
+    maxID = Restaurant.objects.last()
+    restaurant = []
+    if (maxID != None and maxID > 5):
+        randomint = set()  ##generat random int without repeating
+        while len(randomint) < 5:
+            randomint.add(randint(1, maxID))
+        for RN in randomint:
+            restaurant.append(Restaurant.objects.get(resID=RN))
+    else:
+        restaurant = list(Restaurant.objects.all())
+
+    return (restaurant)
 	
 			
 			
