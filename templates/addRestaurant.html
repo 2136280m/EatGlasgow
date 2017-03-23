@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	<H2>Add Restaurant</H2>
+	</title>
+
+
+	<link rel="stylesheet" type="text/css" href="{% static "CSS/AddRestaurant.css" %}"/>
+{% endBlock %}
+
+<div>
+{% block body_block %}
+	<form>
+	<table>
+	<tr>
+		<td>Restaurant Name: </td>
+		<td><input type="text" name="Restaurant Name"></td>
+	</tr>
+	<tr>
+		<td>Cuisine: </td>
+		<td><input type="text" name="Cuisine"></td>
+	</tr>
+	<tr>
+		<td>Adress: </td>
+		<td><input type="text" name="Adress"></td>
+	</tr>
+	<tr>
+		<td>Price Range: </td>
+		<td>
+			<select>
+				<option>0-5</option>
+				<option>5-10</option>
+				<option>10-30</option>
+				<option>30+</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>Opening Hours: </td>
+		<td><input type="text" name="Opening Hours"></td>
+	</tr>
+	<tr>
+		<td>Status: </td>
+		<td>
+			<select>
+				<option>Open</option>
+				<option>Close</option>
+			</select>
+		</td>
+	</tr>
+	</table>
+	</div>
+	</form>

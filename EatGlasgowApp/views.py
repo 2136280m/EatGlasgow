@@ -88,3 +88,6 @@ def user_logout(request):
     logout(request)
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
+
+def add_restaurant(request):
+    return render(request, 'addRestaurant.html')
