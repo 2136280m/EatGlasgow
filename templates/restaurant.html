@@ -25,23 +25,32 @@
 </section> 
 <div class="middle"><br></div>
 <!-- view block here  -->
+
 {% if ReviewList %}
 	{% for Review in ReviewList %}
-	{% if Review.status == 1 %}
-	<section> 
-		Name: {{ Review.userID }} <span style="float:right;">{{ Review.reviewDate }}</span><br>
-		Rating: {{ Review.get_rating_display }}
-		<HR size="1" width="100%" >
-		{{ Review.content }}
-		{% if Review.photo %}
-		<HR size="1" width="100%" >
-		<img src="{{ Review.photo.url }}" alt="{{ Restaurant.name.url }}Photo"/>
-		{% endif%}
-	</section> 
-	{% endif%}
+		{% if Review.status == 1 %}
+			<section> 
+				Name: {{ Review.userID }} <span style="float:right;">{{ Review.reviewDate }}</span><br>
+				Rating: {{ Review.get_rating_display }}
+				<HR size="1" width="100%" >
+				{{ Review.content }}
+				{% if Review.photo %}
+					<HR size="1" width="100%" >
+					<img src="{{ Review.photo.url }}" alt="{{ Restaurant.name.url }}Photo"/>
+				{% endif %}
+			</section> 
+			<section> 
+				{% for reply in replyList %}
+					{% if Review.revID == reply.revID.revID %}
+						Re: {{ Review.userID }} by {{ reply.ownerID }}<span style="float:right;">{{ reply.repDate }}</span><br>
+						{{ reply.content }}
+					{% endif %}
+				{% endfor %}
+			</section> 
+			<div class="middle"><br></div>
+		{% endif %}
 	{% endfor %}
-	<div class="middle"><br></div>
-{% endif%}
 
-{% endif%}
+{% endif %}
+{% endif %}
 {% endblock %}

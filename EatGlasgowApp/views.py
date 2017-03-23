@@ -18,13 +18,17 @@ def about(request):
 	return render(request, 'about.html')
 	
 def restaurant(request, RestaurantID):
-	try:
-		RestaurantList=Restaurant.objects.get(resID=RestaurantID)
-		ReviewList=Review.objects.filter(resID=RestaurantID).order_by('-reviewDate')
-		context_dict = {'RestaurantList':RestaurantList, 'ReviewList':ReviewList}
+
+		RestaurantList=Restaurant.objects.get(resID=RestaurantID)##RestaurantList by RestaurantID
+		ReviewList=Review.objects.filter(resID=RestaurantID).order_by('-reviewDate')##ReviewList by RestaurantID
+		replyList=[]
+		for x in ReviewList:
+			replyList.append(Reply.objects.get(revID=x.revID))
+		print(replyList)
+		context_dict = {'RestaurantList':RestaurantList, 'ReviewList':ReviewList,'replyList':replyList }
+		
 		return render(request,'restaurant.html', context_dict)
-	except:
-		return HttpResponse("There is not such restaurant")
+
 
 
 def login(request):
