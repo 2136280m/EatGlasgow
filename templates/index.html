@@ -18,8 +18,8 @@
                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt="{{ user.get_id }}Photo"
                              height="150px"
                              width="150px"/>
-                    <h4>Welcome, {{ user.get_username }}</h4>
-                    <a href="{% url 'logout' %}">Logout</a></br>
+                        <h4>Welcome, {{ user.get_username }}</h4>
+                        <a href="{% url 'logout' %}">Logout</a></br>
                     </div>
                 {% else %}
                     <div>
@@ -36,7 +36,7 @@
         </left>
 
         <right>
-            <div class="image"><img src="{% static "image/logo.jpg" %}" alt="Logo"/></div>
+            <div class="image"><img class="logo" src="{% static "image/logo.png" %}" alt="Logo"/></div>
             <br/>
             <div class="promoPanel">
                 <p>This is the right part of the page</p>
@@ -51,15 +51,40 @@
         {% if RestaurantList %}
             {% for Restaurant in RestaurantList %}
                 {% if Restaurant.status != 0 %}
-                    <section>
+                    <section class="restaurant_item">
                         <p class="center">
-                        <div class="Rimage"><img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/>
-                        </div>
-                        Name:{{ Restaurant.name }}</br>
-                        Cuisine:{{ Restaurant.get_cuisine_display }}</br>
-                        Address:{{ Restaurant.streetAddress }}</br>
-                        PriceRange:{{ Restaurant.get_priceRange_display }}</br>
-                        Opening Hour:{{ Restaurant.openingHour }}</br>
+                        <table>
+                            <tr>
+                                <td class="Rimage">
+                                    <img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/>
+
+                                </td>
+                                <td class="Rinfo">
+                                    <table >
+                                        <tr>
+                                            <td class="Rinfo_header">Name:</td>
+                                            <td>{{ Restaurant.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Cuisine:</td>
+                                            <td>{{ Restaurant.get_cuisine_display }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Address:</td>
+                                            <td>{{ Restaurant.streetAddress }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">PriceRange:</td>
+                                            <td>{{ Restaurant.get_priceRange_display }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Opening Hour:</td>
+                                            <td>{{ Restaurant.openingHour }}</td>
+                                        </tr>
+                                    </table>
+                            </tr>
+                            </td>
+                        </table>
                         <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
                         </br>
                         </p>
