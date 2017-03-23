@@ -82,7 +82,7 @@ def registration(request):
 	return render(request, 'registration.html', {'registered': registered,'user_form': user_form})
 			
 def random_restaurant():
-    maxID = Restaurant.objects.last()
+    maxID = Restaurant.objects.last().resID
     restaurant = []
     if (maxID != None and maxID > 5):
         randomint = set()  ##generat random int without repeating
