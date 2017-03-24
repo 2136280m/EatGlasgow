@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from EatGlasgowApp.models import UserProfile, Restaurant
+from EatGlasgowApp.models import UserProfile, Restaurant, Review
 
 
 class UserForm(forms.ModelForm):

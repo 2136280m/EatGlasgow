@@ -7,7 +7,7 @@ import django
 
 django.setup()
 import random
-from EatGlasgowApp.models import UserProfile, Restaurant, Promotion, Review, Reply
+from EatGlasgowApp.models import *
 from django.contrib.auth.models import User
 
 
@@ -24,19 +24,19 @@ def populate():
     restaurants = [
         {"name": "Weather Spoon", "owner": "nickyvo", "photo": "defRes.jpeg",
          "cuisine": "WE", "address": "123 Byres Road Glasgow",
-         "price": 2, "status": 1},
+         "price": 2, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
         {"name": "Cook Indi", "owner": "tom", "photo": "defRes.jpeg",
          "cuisine": "AS", "address": "123 Great Western Road Glasgow",
-         "price": 2, "status": 1},
+         "price": 2, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
         {"name": "Dumpling Monkey", "owner": "caroline", "photo": "defRes.jpeg",
          "cuisine": "AS", "address": "123 Dumbarton Road Glasgow",
-         "price": 1, "status": 1},
+         "price": 1, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
         {"name": "Neighbourhood", "owner": "alex", "photo": "defRes.jpeg",
          "cuisine": "AS", "address": "123 Argyle Street Glasgow",
-         "price": 2, "status": 1},
+         "price": 2, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
         {"name": "Pickled Ginger", "owner": "nickyvo", "photo": "defRes.jpeg",
          "cuisine": "AS", "address": "123 St.Vincent Street Glasgow",
-         "price": 3, "status": 1},
+         "price": 3, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
     ]
     promotions = [{"ResID": 1, "des": "50% off"},
                   {"ResID": 1, "des": "25% off first bill"},
@@ -62,7 +62,7 @@ def populate():
         add_user_and_profile(user["username"], user["pass"], user["avatar"])
 
     for res in restaurants:
-        add_res(res["owner"], res["name"], res["photo"], res["cuisine"], res["address"], res["price"])
+        add_res(res["owner"], res["name"], res["photo"], res["cuisine"], res["address"], res["price"], res["description"])
 
     for pro in promotions:
         add_pro(pro["ResID"], pro["des"])
@@ -84,7 +84,7 @@ def add_user_and_profile(username, password, avatar):
     up.save()
 
 
-def add_res(owner, name, photo, cuisine, add, price):
+def add_res(owner, name, photo, cuisine, add, price, d):
     u = User.objects.get(username=owner)
     r = Restaurant.objects.create(owner_id=u.id)
     r.name = name
@@ -92,6 +92,7 @@ def add_res(owner, name, photo, cuisine, add, price):
     r.cuisine = cuisine
     r.streetAddress = add
     r.priceRange = price
+    r.description = d
     r.save()
 
 

@@ -26,6 +26,7 @@ def restaurant(request, RestaurantID):
         if request.user.is_authenticated():
             workingR=Restaurant.objects.get(resID=RestaurantID)
             if request.user==workingR.owner:
+                form = ReviewUploadForm(request.POST, request.FILES)
                 rev=Review.objects.get(revID=request.POST.get('ReviewID'))
                 NewReply=Reply.objects.create(revID = rev, ownerID=workingR.owner)
                 NewReply.content=request.POST.get('review_text')
@@ -34,6 +35,7 @@ def restaurant(request, RestaurantID):
                 NewReview=Review.objects.create(userID = request.user, resID=workingR)
                 NewReview.content = request.POST.get('review_text')
                 NewReview.rating = request.POST.get('rating')
+                NewReview.photo=request.FILES['photo']
                 NewReview.save()
     RestaurantList = Restaurant.objects.get(resID=RestaurantID)  ##RestaurantList by RestaurantID
     ReviewList = Review.objects.filter(resID=RestaurantID).order_by('-reviewDate')  ##ReviewList by RestaurantID
