@@ -126,15 +126,16 @@ def registration(request):
 
 def random_restaurant():
     restaurant_list = list(Restaurant.objects.filter(status=1))##all restaurant that opening
-    if restaurant_list.count(Restaurant) > 0:##check there is Restaurant
+    if len(restaurant_list) > 0:##check there is Restaurant
         restaurant_list = []
         maxID = Restaurant.objects.last().resID##get the max id
-        if maxID != None and maxID > 5:
+        if maxID != None and maxID > 4:
             randomint = set()  ##generat random int without repeating
         while len(randomint) < 5:
             randomint.add(randint(1, maxID))##gererate 5 random number
         for RN in randomint:
             restaurant_list.append(Restaurant.objects.get(resID=RN))##make list to send to website
+    
     return restaurant_list
 
 

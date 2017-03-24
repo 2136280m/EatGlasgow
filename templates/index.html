@@ -21,6 +21,7 @@
                         <a href="{% url 'logout' %}">Logout</a></br>
                         {% if user.userprofile.status == 2 %}
                             <a href= {% url 'your_restaurant' %}> Your Restaurants </a><br>
+                            <a href= {% url 'addRestaurant' %}> Add Restaurants </a><br>
                         {% endif %}
                     </div>
                 {% else %}
