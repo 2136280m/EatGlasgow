@@ -1,24 +1,36 @@
-table { 
-	margin: 0 auto; 
-	width:250px;
+table {
+    margin: 0 auto;
+    width: 250px;
 }
-input{
-	margin: 0 auto; 
-	width: 150px;
+
+input {
+    margin: 0 auto;
+    width: 150px;
 }
+
 form {
-	text-align: center;
+    text-align: center;
 }
+
 img {
-	height: 200px;
-	width: 200px;
-	display: block;
-	margin: 0 auto;
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin: 0 auto;
 }
+
+.global {
+    background-color: #935d8c;
+    background-image: url('../assets/css/images/overlay.png'), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url('../assets/css/images/overlay.png'), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url('../assets/css/images/overlay.png'), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url('../assets/css/images/overlay.png'), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+}
+
 .login {
-	margin: 0 auto; 
-	height: 668px;
-	width: 768px;
-	background-color: #FFFFFF;
-	border: 1px solid #999;
+    margin: 0 auto;
+    height: 668px;
+    width: 768px;
+    background-color: #FFFFFF;
+    border: 1px solid #999;
 }
