@@ -23,6 +23,7 @@
                         <a href="{% url 'logout' %}">Logout</a></br>
                         {% if user.userprofile.status == 2 %} <!--owner function-->
                             <a href= {% url 'your_restaurant' %}> Your Restaurants </a><br>
+                            <a href= {% url 'addRestaurant' %}> Add A New Restaurant</a><br>
                         {% endif %}
                     </div>
                 {% else %} <!--not a user-->

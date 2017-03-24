@@ -103,9 +103,8 @@
                                 {% if Review.revID == reply.revID.revID %} <!--find out the reply of review-->
                                     <section class="replyItem" style="padding: 10px"> <!--who reply who-->
 
-                                        <h3>RE : {{ Review.userID }} by {{ reply.ownerID }} ( Owner of the Restaurant)</h3>
-                                        <span <!--date-->
-                                            style="float:right;"> on {{ reply.repDate }}</span>
+                                        <h3>RE : {{ Review.userID }} by {{ reply.ownerID }} ( Owner of the Restaurant)</h3><!--date-->
+                                        <span style="float:right;"> on {{ reply.repDate }}</span>
                                         <p> <!--contant-->
                                             {{ reply.content }}</p>
                                     </section>
