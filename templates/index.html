@@ -9,7 +9,7 @@
 {% endblock %}
 {% block body_block %}
     <div class="mainpage">
-        <left>
+        <left> <!--block on the left-->
             <p class="center">
                 <!--User Profile-->
                 {% if user.is_authenticated %}
@@ -19,17 +19,19 @@
                              width="150px"/>
                         <h4>Welcome, {{ user.get_username }}</h4>
                         <a href="{% url 'logout' %}">Logout</a></br>
+                         <!--if user is a owner-->
                         {% if user.userprofile.status == 2 %}
+                         <!--show this two function-->
                             <a href= {% url 'your_restaurant' %}> Your Restaurants </a><br>
                             <a href= {% url 'addRestaurant' %}> Add A New Restaurant</a><br>
                         {% endif %}
                     </div>
                 {% else %}
-                    <div style="text-align: center">
+                    <div style="text-align: center"> <!--user defUser photo-->
                         <img src="{{ MEDIA_URL }}profile_images\\defUser.jpeg" alt="{{ user.get_id }}Photo"
                              height="150px"
                              width="150px"/>
-                        <h4>Welcome, New User.</h4>
+                        <h4>Welcome, New User.</h4> <!-- not login yet function-->
                         Please <a href="{% url 'login' %}">Login</a> or
                         <a href="{% url 'registration' %}">Register</a>
                     </div>
@@ -42,7 +44,7 @@
             </p>
         </left>
 
-        <right>
+        <right> <!--block on right-->
             <div class="image"><img class="logo" src="{% static "image/logo.png" %}" alt="Logo"/></div>
             <br/>
             <div style="text-align: center; height: 80%; border: solid 5px #775430; background: #dca53c">
@@ -54,43 +56,43 @@
         <div class="middle"><br></div>
 
 
-        {% if RestaurantList %}
+        {% if RestaurantList %} <!--if there is restaurant-->
             {% for Restaurant in RestaurantList %}
-                {% if Restaurant.status != 0 %}
+                {% if Restaurant.status != 0 %} <!--if restaurant is mark opening-->
                     <section class="restaurant_item">
                         <p class="center">
                         <table>
                             <tr>
-                                <td class="Rimage">
+                                <td class="Rimage"> <!--photo-->
                                     <img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/>
 
                                 </td>
                                 <td class="Rinfo">
                                     <table>
-                                        <tr>
+                                        <tr> <!--name-->
                                             <td class="Rinfo_header">Name:</td>
                                             <td>{{ Restaurant.name }}</td>
                                         </tr>
-                                        <tr>
+                                        <tr> <!--cuisine-->
                                             <td class="Rinfo_header">Cuisine:</td>
                                             <td>{{ Restaurant.get_cuisine_display }}</td>
                                         </tr>
-                                        <tr>
+                                        <tr> <!--adress-->
                                             <td class="Rinfo_header">Address:</td>
                                             <td>{{ Restaurant.streetAddress }}</td>
                                         </tr>
-                                        <tr>
+                                        <tr> <!--price range-->
                                             <td class="Rinfo_header">PriceRange:</td>
                                             <td>{{ Restaurant.get_priceRange_display }}</td>
                                         </tr>
-                                        <tr>
+                                        <tr> <!--opening hour-->
                                             <td class="Rinfo_header">Opening Hour:</td>
                                             <td>{{ Restaurant.openingHour }}</td>
                                         </tr>
                                     </table>
                             </tr>
                             </td>
-                        </table>
+                        </table> <!--show restaurant page, contain review and reply of user and owner-->
                         <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
                         </br>
                         </p>
@@ -98,7 +100,7 @@
                     <div class="middle"><br></div>
                 {% endif %}
             {% endfor %}
-        {% else %}
+        {% else %} <!--there is no restaurant-->
             <section><strong>Opps, Look like we do not have any restaurant yet!</strong></section>
         {% endif %}
 

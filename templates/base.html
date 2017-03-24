@@ -34,7 +34,7 @@
         }
     </script>
 </head>
-<body class="global">
+<body class="global"> <!--search bar-->
 <div style="position: relative;margin-bottom: 250px;width: 100%;display:block;">
     <div class="searchBar" id="search">
         <form method="get" action="{% url 'results' %}" enctype="multipart/form-data">
@@ -52,7 +52,7 @@
     {% endblock %}
 </div>
 
-<div style="position: relative ; bottom: 0px; left: 0px; text-align: center;margin: 0 auto;width: 100%;display:block;">
+<div style="position: relative ; bottom: 0px; left: 0px; text-align: center;margin: 0 auto;width: 100%;display:block;"> 
     <!--In text CSS to make sure the base do not effect other pages -->
     <HR size="2" width="90%">
     <h2><a href="{% url 'about' %}">About the site</a><br></h2>

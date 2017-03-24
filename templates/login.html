@@ -10,7 +10,7 @@
 {% block body_block %}
     <div class="login">
         </br></br></br>
-        <img src="{% static "image/logo.jpg" %}" alt="Logo"/>
+        <img src="{% static "image/logo.jpg" %}" alt="Logo"/> <!--web logo-->
         </br></br></br>
         <form class="login_form_style" id="login_form" method="post" action="{% url 'login' %}">
             {% csrf_token %}
@@ -19,11 +19,11 @@
                     <td colspan="2"><H1>Please Login To Access The Page</H1></td>
                 </tr>
                 <tr>
-                    <td>Username:</td>
+                    <td>Username:</td> <!--usid-->
                     <td><input type="text" name="username" width="48" size="50"/></td>
                 </tr>
                 <tr>
-                    <td>Password:</td>
+                    <td>Password:</td> <!--passward-->
                     <td><input type="password" name="password" width="48" size="100"/>
                     </td>
                 </tr>

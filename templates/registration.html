@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block head_block %}
-    <link rel="stylesheet" type="text/css" href="{% static "CSS/Registration.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/Registration.css" %}"/> 
+    <!--script for cheak password-->
     <script src="{% static "js/password.js" %}"></script>
 {% endblock %}
 
 {% block body_block %}
-    {% if registered %}
+    {% if registered %} <!--already registed-->
         Congratulations you have created an account!
         <a href="{% url 'index' %}"> Return to the homepage </a>
 
@@ -23,7 +24,7 @@
 
             {% csrf_token %}
             <p>Please enter your details.</p>
-            <table>
+            <table> <!--form from form.py-->
                 {{ user_form.as_table }}
             </table>
             <input type="submit" name="submit" value="Click to Register" style="border-radius: 25px;

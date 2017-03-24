@@ -14,7 +14,7 @@
             <section>
                 <table style="text-align: center">
                     <tr>
-                        <td colspan="3">
+                        <td colspan="3"> <!--name of restaurant-->
                             <H1>{{ RestaurantList.name }}</H1>
                         </td>
                     </tr>
@@ -25,22 +25,22 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Cuisine:</td>
+                        <td>Cuisine:</td> <!--cuisine-->
                         <td>{{ RestaurantList.get_cuisine_display }}</td>
                     </tr>
                     <tr>
-                        <td>Address:</td>
+                        <td>Address:</td> <!--address-->
                         <td>{{ RestaurantList.streetAddress }}</td>
                     </tr>
                     <tr>
-                        <td>Price Range:</td>
+                        <td>Price Range:</td> <!--price range-->
                         <td>{{ RestaurantList.get_priceRange_display }}</td>
                     </tr>
                     <tr>
-                        <td>Opening Hour:</td>
+                        <td>Opening Hour:</td> <!--opening hour-->
                         <td>{{ RestaurantList.openingHour }}</td>
                     </tr>
-                    <tr>
+                    <tr> <!--discription-->
                         <td colspan="3"
                             style="border: 2px solid gray;border-radius: 25px; padding: 10px;">{{ RestaurantList.description }}</td>
                     </tr>
@@ -50,19 +50,19 @@
             <div class="middle"><br></div>
             <!-- add view block here  -->
 
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated %} <!--if login , they can make review-->
                 {% if user.userprofile.status == 1 and user.id !=  RestaurantList.owner.id %}
-                    <section>
+                    <section> <!--owner of that restaurant not allowed to add review-->
                         <form id="Review_form" method="post" action="{% url 'restaurant' RestaurantList.resID %}"
                               enctype="multipart/form-data">
-                            {% csrf_token %}
+                            {% csrf_token %} <!--text-->
                             <textarea name="review_text"></textarea>
-                            <select name="rating">
+                            <select name="rating"> <!--rating-->
                                 <option value=0 SELECTED>Not Rated</option>
                                 <option value=1>Poor</option>
                                 <option value=2>Okay</option>
                                 <option value=3>Excellent</option>
-                            </select><br>
+                            </select><br> <!--photo-->
                             <input type="file" name="photo" accept="image/*"><br>
                             <input type="submit" value="Send"/>
                         </form>
@@ -74,54 +74,54 @@
             <!-- add view block end here  -->
             <!-- view block here  -->
             <div class="RevDetails">
-                {% if ReviewList %}
-                    {% for Review in ReviewList %}
-                        {% if Review.status == 1 %}
+                {% if ReviewList %} <!--the review-->
+                    {% for Review in ReviewList %} 
+                        {% if Review.status == 1 %} <!--are showed-->
                             <section class="reviewItem">
                                 <table style="width: inherit;padding: 20px">
                                     <tr style="padding: 0px;font-size: large;font-weight: bold">
-                                        {% if Review.photo %}
+                                        {% if Review.photo %} <!--photo-->
                                             <td><img src="{{ Review.photo.url }}"
                                                      alt="{{ Restaurant.name.url }}Photo"
                                                      style="width: 150px;height: 150px"/></td>
 
-                                        {% endif %}
+                                        {% endif %} <!--content-->
                                         <td colspan="2" style="text-align: right">{{ Review.content }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3" style="text-align: center;font-weight: bold; color: #ffe55f"> My
+                                        <td colspan="3" style="text-align: center;font-weight: bold; color: #ffe55f"> My <!--rating-->
                                             Rating for this : {{ Review.get_rating_display }}</td>
                                     </tr>
                                     <tr style="padding: 0px">
                                         <td colspan="3" style="text-align: right; font-size: small">
-                                            By {{ Review.userID }}
+                                            By {{ Review.userID }} <!--username and date-->
                                             at {{ Review.reviewDate }}</td>
                                     </tr>
                                 </table>
                             </section>
-                            {% for reply in replyList %}
-                                {% if Review.revID == reply.revID.revID %}
-                                    <section class="replyItem" style="padding: 10px">
+                            {% for reply in replyList %} <!--loop for the reply-->
+                                {% if Review.revID == reply.revID.revID %} <!--find out the reply of review-->
+                                    <section class="replyItem" style="padding: 10px"> <!--who reply who-->
 
                                         <h3>RE : {{ Review.userID }} by {{ reply.ownerID }} ( Owner of the Restaurant)</h3>
-                                        <span
+                                        <span <!--date-->
                                             style="float:right;"> on {{ reply.repDate }}</span>
-                                        <p>
+                                        <p> <!--contant-->
                                             {{ reply.content }}</p>
                                     </section>
                                 {% endif %}
                             {% endfor %}
-                            {% if user ==  RestaurantList.owner %}
-                                {% if Review.revID in replyid %}
+                            {% if user ==  RestaurantList.owner %}  <!--own owner can make replt-->
+                                {% if Review.revID in replyid %} <!--if the review already been replyed-->
                                 {% else %}
                                     <section class="replyItem">
                                         Reply:
                                         <form id="Reply_form" method="post"
                                               action="{% url 'restaurant' RestaurantList.resID %}"
                                               enctype="multipart/form-data">
-                                            {% csrf_token %}
+                                            {% csrf_token %} <!--text-->
                                             <textarea name="review_text"></textarea>
-                                            <input type="submit" value="Send"/>
+                                            <input type="submit" value="Send"/> <!--reviewID is assumed-->
                                             <input type="hidden" name="ReviewID" value={{ Review }}/>
                                         </form>
 
