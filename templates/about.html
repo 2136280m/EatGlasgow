@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title_block %}
 	About us
 	</title>
 {% endblock %} 
+
+{% block head_block %}
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
+{% endblock %}
 
 {% block body_block %}
 	<p class="center">Hi there! Thank for using the website, please enjoy!</br>
