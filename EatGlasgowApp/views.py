@@ -148,22 +148,21 @@ def user_logout(request):
 @login_required
 def add_restaurant(request):
     if request.method == 'POST':
-        addRestaurant_form = RestaurantForm(data=request.POST)
-        if addRestaurant_form.is_valid():
-            restaurant = addRestaurant_form.save()
-            NewRestaurant = Restaurant.objects.create()  
-            
-            NewRestaurant.name = restaurant.name
-            NewRestaurant.cuisine = request.POST.get('cuisine')
-            NewRestaurant.priceRange = request.POST.get('priceRange')
-            NewRestaurant.status = request.POST.get('status')
-            NewRestaurant.streetAddress = restaurant.streetAddress
-            NewRestaurant.openingHours = restaurant.openingHours
-            NewRestaurant.save()
-
-    else:
-        addRestaurant_form = RestaurantForm()
-    return render(request, 'addRestaurant.html', {'addRestaurant_form': addRestaurant_form})
+        ##check the post is make by owner
+        if request.user.userprofile.status == 2 :
+            G=Restaurant.objects.create(owner=request.user)
+            G.name=request.POST.get('name')
+            G.cuisine=request.POST.get('cuisine')
+            G.streetAddress=request.POST.get('address')
+            G.priceRange=request.POST.get('Price')
+            G.openingHour=request.POST.get('OH')
+            G.status=request.POST.get('status')
+            try:##check if there is photo uploaded
+                G.photo=request.FILES['photo']
+            except :
+                pass
+            G.save()
+    return render(request, 'addRestaurant.html')
 
 def search_results(request):
     context = {}
