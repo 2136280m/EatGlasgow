@@ -38,13 +38,15 @@
 <div style="position: relative;margin-bottom: 250px;width: 100%;display:block;">
     <div class="searchBar" id="search">
         <form method="get" action="{% url 'results' %}" enctype="multipart/form-data">
-            <input id="other" type="text" name="search" placeholder="Type here to search..." onkeyup="showHint(this.value)">
+            <input id="other" type="text" name="search" placeholder="Type here to search..."
+                   onkeyup="showHint(this.value)">
             <input id="submitsearch" type="submit" name="Submit">
         </form>
     </div>
     <div style="text-align: center">
         <p><span id="txtHint"></span></p>
     </div>
+
     {% block body_block %}
 
     {% endblock %}

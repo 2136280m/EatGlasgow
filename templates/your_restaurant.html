@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block body_block %}
+
     <div class="mainpage">
         <left>
             <p class="center">
@@ -20,7 +21,10 @@
                              width="150px"/>
                         <h4>Welcome, {{ user.get_username }}</h4>
                         <a href="{% url 'logout' %}">Logout</a></br>
-                    </div><br>
+                        {% if user.userprofile.status == 2 %}
+                            <a href= {% url 'your_restaurant' %}> Your Restaurants </a><br>
+                        {% endif %}
+                    </div>
                 {% else %}
                     <div style="text-align: center">
                         <img src="{{ MEDIA_URL }}profile_images\\defUser.jpeg" alt="{{ user.get_id }}Photo"
@@ -31,24 +35,24 @@
                         <a href="{% url 'registration' %}">Register</a>
                     </div>
                 {% endif %}
-                <div style="text-align: center">
-                    <a href = {% url 'index' %}> Index </a><br><br>
-                {%  if user.userprofile.status == 2 %}
-                    <a href = {% url 'your_restaurant' %}> Your Restaurant </a></br><br>
-                </div>
-                {%  endif %}
+
+            <div style="text-align: center"><br>
+                <a href= {% url 'index' %}> Index </a><br><br>
+            </div>
             <!--end UserProfile-->
             </p>
         </left>
 
         <right>
             <div class="image"><img class="logo" src="{% static "image/logo.png" %}" alt="Logo"/></div>
+            <br/>
+            <div style="text-align: center; height: auto; border: solid 5px #775430; background: #dca53c">
+                <h3>Please contact the administrator for advertisement banner.</h3>
+            </div>
         </right>
 
 
         <div class="middle"><br></div>
-
-
         {% if RestaurantList %}
             {% for Restaurant in RestaurantList %}
                 {% if Restaurant.status != 0 %}
@@ -61,7 +65,7 @@
 
                                 </td>
                                 <td class="Rinfo">
-                                    <table >
+                                    <table>
                                         <tr>
                                             <td class="Rinfo_header">Name:</td>
                                             <td>{{ Restaurant.name }}</td>
@@ -82,31 +86,44 @@
                                             <td class="Rinfo_header">Opening Hour:</td>
                                             <td>{{ Restaurant.openingHour }}</td>
                                         </tr>
-                                         <tr>
+                                        <tr>
                                             <td class="Rinfo_header">Status:</td>
                                             <td>{{ Restaurant.get_status_display }}</td>
                                         </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align: center">
+                                                {% if  Restaurant.status == -1 %}
+                                                    <input class="btns" type="button"
+                                                           onclick="location.href='{% url 'restaurantEditor' Restaurant.resID %}';"
+                                                           value="Update Restaurant Info"
+                                                    style="border-radius: 25px;border: 2px solid #73AD21;padding: 5px;"/>
+                                                    </br>
+                                                    <form id="open" method="POST" action="{% url 'your_restaurant' %}">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="Rid" value={{ Restaurant.resID }}>
+                                                        <input class="btns" type="submit" value="ReOpen Restaurant"
+                                                        style="margin-top :5px;border-radius: 25px;border: 2px solid #73AD21;padding: 5px;"/>
+                                                    </form>
+                                                {% endif %}
+
+                                                {% if  Restaurant.status == 1 %}
+                                                    <input type="button"
+                                                           onclick="location.href='{% url 'restaurantEditor' Restaurant.resID %}';"
+                                                           value="Update Restaurant Info"
+                                                    style="border-radius: 25px;border: 2px solid #73AD21;padding: 5px;"/></br>
+                                                    <form id="delete" method="POST"
+                                                          action="{% url 'your_restaurant' %}">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="Rid" value={{ Restaurant.resID }}>
+                                                        <input type="submit" value="Close Restaurant"
+                                                               style="margin-top :5px;border-radius: 25px;border: 2px solid #73AD21;padding: 5px;"/>
+                                                    </form>
+                                                {% endif %}</td>
+                                        </tr>
                                     </table>
                             </tr>
-                            </td>
                         </table>
-                         {% if  Restaurant.status == -1 %}
-                         <input type="button" onclick="location.href='{% url 'restaurantEditor' Restaurant.resID %}';" value="Edit" />
-                       </br>
-                        <form id="open" method="POST" action="{% url 'your_restaurant' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="Rid" value={{ Restaurant.resID }}>
-                        <input type="submit"  value="open" />
-                        </form>
-                       {% endif %}
-                        {% if  Restaurant.status == 1 %}
-                       <input type="button" onclick="location.href='{% url 'restaurantEditor' Restaurant.resID %}';" value="Edit" /></br>
-                        <form id="delete" method="POST" action="{% url 'your_restaurant' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="Rid" value={{ Restaurant.resID }}>
-                        <input type="submit"  value="close" />
-                        </form>
-                        {% endif %}
+
                         </p>
                     </section>
                     <div class="middle"><br></div>
