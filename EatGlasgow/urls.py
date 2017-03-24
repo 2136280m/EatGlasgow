@@ -32,5 +32,9 @@ urlpatterns = [
                   url(r'^registration$', views.registration, name='registration'),
                   url(r'^addRestaurant$', views.add_restaurant, name='addRestaurant'),
                   url(r'^results/$', views.search_results, name='results'),
-                  url(r'^your_restaurant', views.your_restaurant, name='your_restaurant')
+                  url(r'^your_restaurant', views.your_restaurant, name='your_restaurant'),
+                  
+                  url(r'^test', views.test, name='test'),
+                  url(r'^test?search=(?P<keyword>[\w\-]+)$', views.searchtest, name='ST'),
+                  
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

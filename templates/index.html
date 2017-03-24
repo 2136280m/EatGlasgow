@@ -7,7 +7,7 @@
 {% block head_block %}
     <link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
 {% endblock %}
-
+<!-- asdkaskbaskjb --> 
 {% block body_block %}
     <div class="mainpage">
         <left>
@@ -31,13 +31,13 @@
                         <a href="{% url 'registration' %}">Register</a>
                     </div>
                 {% endif %}
+                
                 <div style="text-align: center"><br>
-                <a href = {% url 'index' %}> Index </a><br>
+                <a href = {% url 'index' %}> Index </a><br><br>
                 {%  if user.userprofile.status == 2 %}
-                    
                     <a href = {% url 'your_restaurant' %}> Your Restaurant </a><br>
-                    </div>
                 {%  endif %}
+                 </div>
             <!--end UserProfile-->
             </p>
         </left>

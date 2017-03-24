@@ -3,8 +3,11 @@
 {% block title_block %}
     Editor-{{ RestaurantList.name }}
 {% endblock %}
-
+{% block head_block %}
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/Edit_restaurant.css" %}"/>
+{% endblock %}
 {% block body_block %}
+<div class="center">
 <form id="EditRestaurant" method="post" action="{% url 'restaurantEditor' RestaurantList.resID %}" enctype="multipart/form-data">
 {% csrf_token %}
 Current Photo:<br>
@@ -60,4 +63,5 @@ New: <input type="file" name="photo" accept="image/*"><br>
 </table>
  <input id="submit" type="submit" name="Submit">
 <form>
+</div>
 {% endblock %}

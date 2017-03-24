@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    EatGlasgow
+{% endblock %}
+{% block head_block %}
+    <script type="text/javascript" src="{% static "js/search.js" %}"></script>
+{% endblock %}
+
+{% block body_block %}
+<form action=""> 
+	<input id="other" type="text" name="search" placeholder="Type here..." onkeyup="search(this.value)">
+</form>
+	<div id="searchResult"><div>
+{% endblock %}
