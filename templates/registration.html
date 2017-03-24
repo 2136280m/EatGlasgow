@@ -2,32 +2,34 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	EatGlasgow-Registration
-{% endblock %} 
+    EatGlasgow-Registration
+{% endblock %}
 
 {% block head_block %}
-	<link rel="stylesheet" type="text/css" href="{% static "CSS/Registration.css" %}"/>
-	<script src="{% static "js/password.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/Registration.css" %}"/>
+    <script src="{% static "js/password.js" %}"></script>
 {% endblock %}
 
 {% block body_block %}
-	{% if registered %}
-		Congratulations you have created an account!
-		<a href="{% url 'index' %}"> Return to the homepage </a> 
-		
-	{% else %}
-		<div class="registration">
-		<H1 class="center">Create your EatGlasgow Account</H1>
-		<form id="user_form" method="POST" action="{% url 'registration' %}"
-			enctype="multipart/form-data" onsubmit="return checkForm(this);">
-			
-			{% csrf_token %}
-			<p>Please enter your details.</p>
-			<table>
-			{{user_form.as_table}}
-			</table>
-			<input type="submit" name = "submit" value="Register" />
-		</form>
-		<div>
-	{% endif %}
+    {% if registered %}
+        Congratulations you have created an account!
+        <a href="{% url 'index' %}"> Return to the homepage </a>
+
+    {% else %}
+        <div class="registration">
+        <H1 class="center">Create your EatGlasgow Account</H1>
+        <form id="user_form" method="POST" action="{% url 'registration' %}"
+              enctype="multipart/form-data" onsubmit="return checkForm(this);">
+
+            {% csrf_token %}
+            <p>Please enter your details.</p>
+            <table>
+                {{ user_form.as_table }}
+            </table>
+            <input type="submit" name="submit" value="Click to Register" style="border-radius: 25px;
+    border: 2px solid #949494;
+    padding: 5px; width: auto"/>
+        </form>
+        <div>
+    {% endif %}
 {% endblock %}

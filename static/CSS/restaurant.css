@@ -41,3 +41,57 @@ textarea {
     width:750px;
 	height:50px;
 }
+
+.global {
+    background-color: #935d8c;
+    background-image: url('../assets/css/images/overlay.png'), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url('../assets/css/images/overlay.png'), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url('../assets/css/images/overlay.png'), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url('../assets/css/images/overlay.png'), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+}
+
+.searchBar {
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
+    background-color: transparent;
+    border: 1px hidden #999;
+}
+
+.searchBar form {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: inherit;
+    align-content: center;
+    padding: 5px;
+}
+
+.searchBar form input {
+    max-width: 100%;
+    width: inherit;
+    padding-left: 1px;
+    padding-right: 1px;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 5px;
+}
+.ResDetails section{
+	 padding: 5px;
+    overflow-x:auto;
+    background-color: #dcdcdc;
+	border-radius: 25px;
+    border: 2px solid #949494;
+}
+.RevDetails section{
+	 padding: 5px;
+    overflow-x:auto;
+	border-radius: 25px;
+    border: 2px solid #949494;}
+
+.reviewItem{
+	background: #4e9c5c;
+}
+.replyItem{
+	margin-top: 5px;
+	background: #32dc92;
+}

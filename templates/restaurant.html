@@ -2,92 +2,137 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	{{ RestaurantList.name }}
+    {{ RestaurantList.name }}
 {% endblock %}
 {% block head_block %}
-	<link rel="stylesheet" type="text/css" href="{% static "CSS/restaurant.css" %}"/>
-{% endblock %} 
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/restaurant.css" %}"/>
+{% endblock %}
 
 {% block body_block %}
-{% if RestaurantList %}
-<section> 
-	<H1>{{ RestaurantList.name }}</H1>
-	<HR size="1" width="100%" >
-	Cuisine:{{ RestaurantList.get_cuisine_display }}</br>
-	Address:{{ RestaurantList.streetAddress }}</br>
-	Price Range:{{ RestaurantList.get_priceRange_display }}</br>
-	OpeningHour:{{ RestaurantList.openingHour }}</br>
-</section> 
-<div class="middle"><br></div>
-<section> 
-	<div class="imgbox "><img class="center" src="{{ RestaurantList.photo.url }}" alt="{{ Restaurant.name}}Photo"/></div>
-	{{ RestaurantList.description }}
-</section> 
-<div class="middle"><br></div>
-<!-- add view block here  -->
-{% if user.is_authenticated %}
-{% if user.userprofile.status == 1 and user.id !=  RestaurantList.owner.id %}
-<section> 
-<form id="Review_form" method="post" action="{% url 'restaurant' RestaurantList.resID %}" enctype="multipart/form-data">
-{% csrf_token %}
-<textarea name="review_text"></textarea>
-<select name="rating">
-  <option value =0 SELECTED>Not Rated</option>
-  <option value =1>Poor</option>
-  <option value=2>Okay</option>
-  <option value=3>Excellent</option>
-</select><br>
-<input type="file" name="photo" accept="image/*"><br>
-<input type="submit" value="Send" />
-</form>
-</section> 
-{% endif %}
-{% endif %}
+    <div class="ResDetails">
+        {% if RestaurantList %}
+            <section>
+                <table style="text-align: center">
+                    <tr>
+                        <td colspan="3">
+                            <H1>{{ RestaurantList.name }}</H1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5" style="white-space: nowrap;">
+                            <img src="{{ RestaurantList.photo.url }}"
+                                 alt="{{ Restaurant.name }}Photo"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cuisine:</td>
+                        <td>{{ RestaurantList.get_cuisine_display }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td>{{ RestaurantList.streetAddress }}</td>
+                    </tr>
+                    <tr>
+                        <td>Price Range:</td>
+                        <td>{{ RestaurantList.get_priceRange_display }}</td>
+                    </tr>
+                    <tr>
+                        <td>Opening Hour:</td>
+                        <td>{{ RestaurantList.openingHour }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"
+                            style="border: 2px solid gray;border-radius: 25px; padding: 10px;">{{ RestaurantList.description }}</td>
+                    </tr>
+                </table>
+            </section>
 
+            <div class="middle"><br></div>
+            <!-- add view block here  -->
 
-<!-- add view block end here  -->
-<!-- view block here  -->
+            {% if user.is_authenticated %}
+                {% if user.userprofile.status == 1 and user.id !=  RestaurantList.owner.id %}
+                    <section>
+                        <form id="Review_form" method="post" action="{% url 'restaurant' RestaurantList.resID %}"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <textarea name="review_text"></textarea>
+                            <select name="rating">
+                                <option value=0 SELECTED>Not Rated</option>
+                                <option value=1>Poor</option>
+                                <option value=2>Okay</option>
+                                <option value=3>Excellent</option>
+                            </select><br>
+                            <input type="file" name="photo" accept="image/*"><br>
+                            <input type="submit" value="Send"/>
+                        </form>
+                    </section>
+                {% endif %}
+            {% endif %}
+            </div>
 
-{% if ReviewList %}
-	{% for Review in ReviewList %}
-		{% if Review.status == 1 %}
-			<section> 
-				Name: {{ Review.userID }} <span style="float:right;">{{ Review.reviewDate }}</span><br>
-				Rating: {{ Review.get_rating_display }}
-				<HR size="1" width="100%" >
-				{{ Review.content }}
-				{% if Review.photo %}
-					<HR size="1" width="100%" >
-					<img src="{{ Review.photo.url }}" alt="{{ Restaurant.name.url }}Photo"/>
-				{% endif %}
-			</section> 
-				{% for reply in replyList %}
-					{% if Review.revID == reply.revID.revID %}
-					<section> 
-						Re: {{ Review.userID }} by {{ reply.ownerID }}<span style="float:right;">{{ reply.repDate }}</span><br>
-						{{ reply.content }}
-					</section> 
-					{% endif %}
-				{% endfor %}
-			{% if user ==  RestaurantList.owner %}
-			{% if Review.revID in replyid %}
-			{% else %}
-			<section> 
-			Reply:
-			<form id="Reply_form" method="post" action="{% url 'restaurant' RestaurantList.resID %}" enctype="multipart/form-data">
-				{% csrf_token %}
-				<textarea name="review_text"></textarea>
-				<input type="submit" value="Send" />
-				<input type="hidden" name="ReviewID" value={{ Review }} />
-			</form>
+            <!-- add view block end here  -->
+            <!-- view block here  -->
+            <div class="RevDetails">
+                {% if ReviewList %}
+                    {% for Review in ReviewList %}
+                        {% if Review.status == 1 %}
+                            <section class="reviewItem">
+                                <table style="width: inherit;padding: 20px">
+                                    <tr style="padding: 0px;font-size: large;font-weight: bold">
+                                        {% if Review.photo %}
+                                            <td><img src="{{ Review.photo.url }}"
+                                                     alt="{{ Restaurant.name.url }}Photo"
+                                                     style="width: 150px;height: 150px"/></td>
 
-			</section> 
-			{% endif %}
-			{% endif %}
-			<div class="middle"><br></div>
-		{% endif %}
-	{% endfor %}
+                                        {% endif %}
+                                        <td colspan="2" style="text-align: right">{{ Review.content }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center;font-weight: bold; color: #ffe55f"> My
+                                            Rating for this : {{ Review.get_rating_display }}</td>
+                                    </tr>
+                                    <tr style="padding: 0px">
+                                        <td colspan="3" style="text-align: right; font-size: small">
+                                            By {{ Review.userID }}
+                                            at {{ Review.reviewDate }}</td>
+                                    </tr>
+                                </table>
+                            </section>
+                            {% for reply in replyList %}
+                                {% if Review.revID == reply.revID.revID %}
+                                    <section class="replyItem" style="padding: 10px">
 
-{% endif %}
-{% endif %}
+                                        <h3>RE : {{ Review.userID }} by {{ reply.ownerID }} ( Owner of the Restaurant)</h3>
+                                        <span
+                                            style="float:right;"> on {{ reply.repDate }}</span>
+                                        <p>
+                                            {{ reply.content }}</p>
+                                    </section>
+                                {% endif %}
+                            {% endfor %}
+                            {% if user ==  RestaurantList.owner %}
+                                {% if Review.revID in replyid %}
+                                {% else %}
+                                    <section class="replyItem">
+                                        Reply:
+                                        <form id="Reply_form" method="post"
+                                              action="{% url 'restaurant' RestaurantList.resID %}"
+                                              enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <textarea name="review_text"></textarea>
+                                            <input type="submit" value="Send"/>
+                                            <input type="hidden" name="ReviewID" value={{ Review }}/>
+                                        </form>
+
+                                    </section>
+                                {% endif %}
+                            {% endif %}
+                            <div class="middle"><br></div>
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            </div>
+        {% endif %}
 {% endblock %}
