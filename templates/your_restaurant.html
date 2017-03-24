@@ -10,28 +10,7 @@
 {% endblock %}
 
 {% block body_block %}
-
-    <div class = 'center'>
-        Here are the restaurants you own
-    </div>
-    {% for restaurant in restaurant_List %}
-        {% if restaurant.owner == user %}
-            <section>
-                <p class="center">
-                <div class="Rimage"><img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/></div>
-                Name:{{ Restaurant.name }}</br>
-                Cuisine:{{ Restaurant.get_cuisine_display }}</br>
-                Address:{{ Restaurant.streetAddress }}</br>
-                PriceRange:{{ Restaurant.get_priceRange_display }}</br>
-                Opening Hours:{{ Restaurant.openingHour }}</br>
-                <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
-                </br>
-                </p>
-            </section>
-        {% endif %}
+    {% for restaurant in restaurants %}
+        Here is a link to {{ restaurant.name }}
     {% endfor %}
-    <div>
-
-    </div>
-
 {% endblock %}
