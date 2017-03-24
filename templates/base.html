@@ -8,14 +8,42 @@
     </title>
     {% block head_block %}
     {% endblock %}
+    <script type="text/javascript">
+        function showHint(str) {
+            var xmlhttp;
+            if (str.length == 0) {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            }
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+                }
+                else {
+                    document.getElementById("txtHint").innerHTML = "Fail";
+                }
+            }
+            xmlhttp.open("GET", "search/" + str, true);
+            xmlhttp.send();
+        }
+    </script>
 </head>
 <body class="global">
 <div style="position: relative;margin-bottom: 250px;width: 100%;display:block;">
     <div class="searchBar" id="search">
         <form method="get" action="{% url 'results' %}" enctype="multipart/form-data">
-            <input id="other" type="text" name="search" placeholder="Type here...">
+            <input id="other" type="text" name="search" placeholder="Type here to search..." onkeyup="showHint(this.value)">
             <input id="submitsearch" type="submit" name="Submit">
         </form>
+    </div>
+    <div style="text-align: center">
+        <p><span id="txtHint"></span></p>
     </div>
     {% block body_block %}
 
@@ -25,7 +53,7 @@
 <div style="position: relative ; bottom: 0px; left: 0px; text-align: center;margin: 0 auto;width: 100%;display:block;">
     <!--In text CSS to make sure the base do not effect other pages -->
     <HR size="2" width="90%">
-    <a href="{% url 'index' %}">Index</a> <a href="{% url 'about' %}">About</a><br>
+    <h2><a href="{% url 'about' %}">About the site</a><br></h2>
     The Website Was Made By </br>Yuk Fai Wong, Nhut Minh Vo, Alex Marshall, Ho Yan Lew
 </div>
 </body>
