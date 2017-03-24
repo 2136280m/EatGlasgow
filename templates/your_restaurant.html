@@ -4,13 +4,111 @@
 {% block title_block %}
     Your Restaurant
 {% endblock %}
-
 {% block head_block %}
     <link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
 {% endblock %}
 
 {% block body_block %}
-    {% for restaurant in restaurants %}
-        Here is a link to {{ restaurant.name }}
-    {% endfor %}
+    <div class="mainpage">
+        <left>
+            <p class="center">
+                <!--User Profile-->
+                {% if user.is_authenticated %}
+                    <div style="text-align: center">
+                        <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt="{{ user.get_id }}Photo"
+                             height="150px"
+                             width="150px"/>
+                        <h4>Welcome, {{ user.get_username }}</h4>
+                        <a href="{% url 'logout' %}">Logout</a></br>
+                    </div>
+                {% else %}
+                    <div style="text-align: center">
+                        <img src="{{ MEDIA_URL }}profile_images\\defUser.jpeg" alt="{{ user.get_id }}Photo"
+                             height="150px"
+                             width="150px"/>
+                        <h4>Welcome, New User.</h4>
+                        Please <a href="{% url 'login' %}">Login</a> or
+                        <a href="{% url 'registration' %}">Register</a>
+                    </div>
+                {% endif %}
+                {%  if user.userprofile.status == 2 %}
+                    <div style="text-align: center">
+                    <a href = {% url 'your_restaurant' %}> Your Restaurant </a>
+                    </div>
+                {%  endif %}
+            <!--end UserProfile-->
+            </p>
+        </left>
+
+        <right>
+            <div class="image"><img class="logo" src="{% static "image/logo.png" %}" alt="Logo"/></div>
+        </right>
+
+
+        <div class="middle"><br></div>
+
+
+        {% if RestaurantList %}
+            {% for Restaurant in RestaurantList %}
+                {% if Restaurant.status != 0 %}
+                    <section class="restaurant_item">
+                        <p class="center">
+                        <table>
+                            <tr>
+                                <td class="Rimage">
+                                    <img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/>
+
+                                </td>
+                                <td class="Rinfo">
+                                    <table >
+                                        <tr>
+                                            <td class="Rinfo_header">Name:</td>
+                                            <td>{{ Restaurant.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Cuisine:</td>
+                                            <td>{{ Restaurant.get_cuisine_display }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Address:</td>
+                                            <td>{{ Restaurant.streetAddress }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">PriceRange:</td>
+                                            <td>{{ Restaurant.get_priceRange_display }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Opening Hour:</td>
+                                            <td>{{ Restaurant.openingHour }}</td>
+                                        </tr>
+                                    </table>
+                            </tr>
+                            </td>
+                        </table>
+                         {% if  Restaurant.status == -1 %}
+                        <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
+                        <form id="open" method="POST" action="{% url 'your_restaurant' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="Rid" value={{ Restaurant.resID }}>
+                        <input type="submit"  value="open" />
+                        </form>
+                       {% endif %}
+                        {% if  Restaurant.status == 1 %}
+                        <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
+                        <form id="delete" method="POST" action="{% url 'your_restaurant' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="Rid" value={{ Restaurant.resID }}>
+                        <input type="submit"  value="close" />
+                        </form>
+                        {% endif %}
+                        </p>
+                    </section>
+                    <div class="middle"><br></div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <section><strong>Opps, Look like you do not have any restaurant yet!</strong></section>
+        {% endif %}
+
+    </div>
 {% endblock %}

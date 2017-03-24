@@ -92,7 +92,7 @@ def registration(request):
 
 
 def random_restaurant():
-    restaurant_list = list(Restaurant.objects.all())
+    restaurant_list = list(Restaurant.objects.filter(status=1))
     if restaurant_list.count(Restaurant) > 0:
         restaurant_list = []
         maxID = Restaurant.objects.last().resID
@@ -138,5 +138,15 @@ def search_results(request):
 
 @login_required
 def your_restaurant(request):
-    return render(request, 'your_restaurant.html',{'restaurants':Restaurant.objects.filter(owner=request.user)})
+    if request.method == 'POST':
+        rest=Restaurant.objects.get(resID=request.POST.get('Rid'))
+        if (rest.status==1):
+            print(rest)
+            rest.status=-1
+            rest.save()
+        elif (rest.status==-1):
+            print(rest)
+            rest.status=1
+            rest.save()
+    return render(request, 'your_restaurant.html', {'RestaurantList':Restaurant.objects.filter(owner=request.user, status=1)|Restaurant.objects.filter(owner=request.user, status=-1)})
 
