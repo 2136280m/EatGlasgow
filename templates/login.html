@@ -2,29 +2,33 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	EatGlasgow-Login
-	</title>
-	<link rel="stylesheet" type="text/css" href="{% static "CSS/Login.css" %}"/>
-{% endblock %} 
+    EatGlasgow-Login
+    </title>
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/Login.css" %}"/>
+{% endblock %}
 
 {% block body_block %}
-	<div class="login">
-	</br></br></br>
-	<img src="{% static "image/logo.jpg" %}" alt="Logo"/>
-	</br></br></br>
-	<form id="login_form" method="post" action="{% url 'login' %}">
-		{% csrf_token %}
-		<table>
-		<tr><td colspan="2"><H1>Login</H1></td></tr>
-		<tr>
-		<td>Username: </td><td><input type="text" name="username" width="48" size="50"/></td>
-		</tr>
-		<tr>
-		<td>Password: </td><td><input type="password" name="password" width="48" size="100" />
-		</td>
-		</tr>
-		<table>
-		<input type="submit" value="Login" />
-	</form>
-	</div>
+    <div class="login">
+        </br></br></br>
+        <img src="{% static "image/logo.jpg" %}" alt="Logo"/>
+        </br></br></br>
+        <form class="login_form_style" id="login_form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td colspan="2"><H1>Please Login To Access The Page</H1></td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td><input type="text" name="username" width="48" size="50"/></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password" width="48" size="100"/>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Login"/>
+        </form>
+    </div>
 {% endblock %}
