@@ -1,0 +1,48 @@
+{% load staticfiles %}
+{% if RestaurantList %}
+            {% for Restaurant in RestaurantList %}
+                {% if Restaurant.status != 0 %}
+                    <section class="restaurant_item">
+                        <p class="center">
+                        <table>
+                            <tr>
+                                <td class="Rimage">
+                                    <img src="{{ Restaurant.photo.url }}" alt="{{ Restaurant.name }}Photo"/>
+
+                                </td>
+                                <td class="Rinfo">
+                                    <table >
+                                        <tr>
+                                            <td class="Rinfo_header">Name:</td>
+                                            <td>{{ Restaurant.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Cuisine:</td>
+                                            <td>{{ Restaurant.get_cuisine_display }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Address:</td>
+                                            <td>{{ Restaurant.streetAddress }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">PriceRange:</td>
+                                            <td>{{ Restaurant.get_priceRange_display }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Rinfo_header">Opening Hour:</td>
+                                            <td>{{ Restaurant.openingHour }}</td>
+                                        </tr>
+                                    </table>
+                            </tr>
+                            </td>
+                        </table>
+                        <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
+                        </br>
+                        </p>
+                    </section>
+                    <div class="middle"><br></div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <section><strong>Opps, Look like we do not have any restaurant yet!</strong></section>
+{% endif %}

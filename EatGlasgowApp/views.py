@@ -193,5 +193,7 @@ def test(request):
     return render(request, 'test.html')
     
 def searchtest(request, keyword):
-    x="asd"
-    return x
+    RestaurantList = {'RestaurantList': Restaurant.objects.filter(name__icontains=keyword)}
+    print(RestaurantList)
+    return render(request, 'searchresult.html', RestaurantList)
+
