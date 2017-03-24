@@ -151,11 +151,14 @@ def add_restaurant(request):
         addRestaurant_form = RestaurantForm(data=request.POST)
         if addRestaurant_form.is_valid():
             restaurant = addRestaurant_form.save()
-            NewRestaurant = Restaurant.objects.create()
+            NewRestaurant = Restaurant.objects.create()  
+            
+            NewRestaurant.name = restaurant.name
             NewRestaurant.cuisine = request.POST.get('cuisine')
             NewRestaurant.priceRange = request.POST.get('priceRange')
             NewRestaurant.status = request.POST.get('status')
-
+            NewRestaurant.streetAddress = restaurant.streetAddress
+            NewRestaurant.openingHours = restaurant.openingHours
             NewRestaurant.save()
 
     else:
