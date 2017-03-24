@@ -11,7 +11,6 @@ from django.core.urlresolvers import reverse
 
 from random import randint
 
-
 def index(request):
     RestaurantList = random_restaurant()
     context_dict = {'RestaurantList': RestaurantList}
@@ -89,17 +88,17 @@ def registration(request):
 
 
 def random_restaurant():
-    restaurant_List = list(Restaurant.objects.all())
-    if restaurant_List.count(Restaurant) > 0:
-        restaurant_List = []
+    restaurant_list = list(Restaurant.objects.all())
+    if restaurant_list.count(Restaurant) > 0:
+        restaurant_list = []
         maxID = Restaurant.objects.last().resID
         if maxID != None and maxID > 5:
             randomint = set()  ##generat random int without repeating
         while len(randomint) < 5:
             randomint.add(randint(1, maxID))
         for RN in randomint:
-            restaurant_List.append(Restaurant.objects.get(resID=RN))
-    return restaurant_List
+            restaurant_list.append(Restaurant.objects.get(resID=RN))
+    return restaurant_list
 
 
 @login_required
@@ -133,4 +132,10 @@ def search_results(request):
     context['results'] = Restaurant.objects.filter(name__icontains=search)
     return render(request, 'results.html', context=context)
 
+<<<<<<< HEAD
 
+=======
+@login_required
+def your_restaurant(request):
+    return render(request, 'your_restaurant.html',{'restaurants':Restaurant.objects.filter(owner=request.user)})
+>>>>>>> 0089244f027f35a32e0d5ec088ad7ea174c55d65

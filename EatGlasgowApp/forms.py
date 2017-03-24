@@ -26,10 +26,8 @@ class RestaurantForm(forms.ModelForm):
 	priceRange = forms.ChoiceField(widget=forms.RadioSelect, choices=RANGE_CHOICE)
 	openingHours = forms.CharField(max_length=128, help_text="Please enter the opening hours of restaurant")
 	status = forms.ChoiceField(widget=forms.RadioSelect, choices=RESTAURANT_STATUS_CHOICE)
-	description = forms.CharField(max_length=256, help_text="Please enter the description for restaurant")
-
 
 	class Meta():
 		model = Restaurant
 		fields = ('resID', 'owner', 'name', 'photo', 'cuisine', 'streetAdress',
-		'priceRange', 'openingHours', 'status', 'description' )
+		'priceRange', 'openingHours', 'status' )

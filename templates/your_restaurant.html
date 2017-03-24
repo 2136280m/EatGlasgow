@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Your Restaurant
+{% endblock %}
+
+{% block head_block %}
+    <link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
+{% endblock %}
+
+{% block body_block %}
+    {% for restaurant in restaurants %}
+        Here is a link to {{ restaurant.name }}
+    {% endfor %}
+{% endblock %}
