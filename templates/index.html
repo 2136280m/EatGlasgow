@@ -31,9 +31,11 @@
                         <a href="{% url 'registration' %}">Register</a>
                     </div>
                 {% endif %}
+                <div style="text-align: center"><br>
+                <a href = {% url 'index' %}> Index </a><br>
                 {%  if user.userprofile.status == 2 %}
-                    <div style="text-align: center">
-                    <a href = {% url 'your_restaurant' %}> Your Restaurant </a>
+                    
+                    <a href = {% url 'your_restaurant' %}> Your Restaurant </a><br>
                     </div>
                 {%  endif %}
             <!--end UserProfile-->

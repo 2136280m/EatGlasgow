@@ -20,7 +20,7 @@
                              width="150px"/>
                         <h4>Welcome, {{ user.get_username }}</h4>
                         <a href="{% url 'logout' %}">Logout</a></br>
-                    </div>
+                    </div><br>
                 {% else %}
                     <div style="text-align: center">
                         <img src="{{ MEDIA_URL }}profile_images\\defUser.jpeg" alt="{{ user.get_id }}Photo"
@@ -31,10 +31,11 @@
                         <a href="{% url 'registration' %}">Register</a>
                     </div>
                 {% endif %}
+                <div style="text-align: center">
+                    <a href = {% url 'index' %}> Index </a><br><br>
                 {%  if user.userprofile.status == 2 %}
-                    <div style="text-align: center">
-                    <a href = {% url 'your_restaurant' %}> Your Restaurant </a>
-                    </div>
+                    <a href = {% url 'your_restaurant' %}> Your Restaurant </a></br><br>
+                </div>
                 {%  endif %}
             <!--end UserProfile-->
             </p>
@@ -90,7 +91,8 @@
                             </td>
                         </table>
                          {% if  Restaurant.status == -1 %}
-                        <a href="{% url 'restaurantEditor' Restaurant.resID %}" class="center">Edit</a></br>
+                         <input type="button" onclick="location.href='{% url 'restaurantEditor' Restaurant.resID %}';" value="Edit" />
+                       </br>
                         <form id="open" method="POST" action="{% url 'your_restaurant' %}">
                         {% csrf_token %}
                         <input type="hidden" name="Rid" value={{ Restaurant.resID }}>
@@ -98,7 +100,7 @@
                         </form>
                        {% endif %}
                         {% if  Restaurant.status == 1 %}
-                        <a href="{% url 'restaurantEditor' Restaurant.resID %}" class="center">Edit</a></br>
+                       <input type="button" onclick="location.href='{% url 'restaurantEditor' Restaurant.resID %}';" value="Edit" /></br>
                         <form id="delete" method="POST" action="{% url 'your_restaurant' %}">
                         {% csrf_token %}
                         <input type="hidden" name="Rid" value={{ Restaurant.resID }}>

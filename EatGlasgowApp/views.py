@@ -123,6 +123,7 @@ def random_restaurant():
             randomint.add(randint(1, maxID))
         for RN in randomint:
             restaurant_list.append(Restaurant.objects.get(resID=RN))
+    print(restaurant_list)
     return restaurant_list
 
 
