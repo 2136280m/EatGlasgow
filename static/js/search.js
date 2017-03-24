@@ -2,8 +2,8 @@ function search(str)
 {
 var xmlhttp;
 if (str.length==0)
-  { 
-  document.getElementById("searchResult").innerHTML="1";
+  {
+  document.getElementById("").innerHTML="";
   return;
   }
 if (window.XMLHttpRequest)
@@ -22,6 +22,6 @@ xmlhttp.onreadystatechange=function()
     }
    }
   }
-xmlhttp.open("GET","/ajax/search.asp?q="+str,true);
+xmlhttp.open("GET","search/"+str, true);
 xmlhttp.send();
 }
