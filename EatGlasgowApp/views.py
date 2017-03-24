@@ -53,8 +53,11 @@ def restaurant(request, RestaurantID):
     return render(request, 'restaurant.html', context_dict)
 
 def restaurantEditor(request, RestaurantID):
+    try:
+        Edit = Restaurant.objects.get(resID=RestaurantID)
+    except :
+        return render(request, 'Restaurant_Editor.html')
     if request.method == 'POST':
-        Editor = Restaurant.objects.get(resID=RestaurantID)
         if request.user==Editor.owner:
             Editor.name=request.POST.get('name')
             Editor.cuisine=request.POST.get('cuisine')
@@ -68,10 +71,6 @@ def restaurantEditor(request, RestaurantID):
             except :
                 pass
             Editor.save()
-    try:
-        Edit = Restaurant.objects.get(resID=RestaurantID)
-    except :
-        return render(request, 'Restaurant_Editor.html')
     return render(request, 'Restaurant_Editor.html', {'RestaurantList':Edit})
 
 
