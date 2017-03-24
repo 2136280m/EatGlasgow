@@ -6,6 +6,7 @@ from django import forms
 from django.contrib.auth.models import User
 from EatGlasgowApp.models import *
 from EatGlasgowApp.forms import *
+from django import template
 from django.core.urlresolvers import reverse
 
 from random import randint
@@ -24,11 +25,17 @@ def about(request):
 def restaurant(request, RestaurantID):
     if request.method == 'POST':
         if request.user.is_authenticated():
-            res = Restaurant.objects.get(resID=RestaurantID)
-            NewReview=Review.objects.create(userID = request.user, resID=res)
-            NewReview.content = request.POST.get('review_text')
-            NewReview.rating = request.POST.get('rating')
-            NewReview.save()
+            workingR=Restaurant.objects.get(resID=RestaurantID)
+            if request.user==workingR.owner:
+                rev=Review.objects.get(revID=request.POST.get('ReviewID'))
+                NewReply=Reply.objects.create(revID = rev, ownerID=workingR.owner)
+                NewReply.content=request.POST.get('review_text')
+                NewReply.save()
+            else:
+                NewReview=Review.objects.create(userID = request.user, resID=workingR)
+                NewReview.content = request.POST.get('review_text')
+                NewReview.rating = request.POST.get('rating')
+                NewReview.save()
     RestaurantList = Restaurant.objects.get(resID=RestaurantID)  ##RestaurantList by RestaurantID
     ReviewList = Review.objects.filter(resID=RestaurantID).order_by('-reviewDate')  ##ReviewList by RestaurantID
     replyList = []
@@ -37,7 +44,6 @@ def restaurant(request, RestaurantID):
             replyList.append(Reply.objects.get(revID=x.revID))
         except Reply.DoesNotExist:
             replyList.append(None)
-    print(replyList)
     
     context_dict = {'RestaurantList': RestaurantList, 'ReviewList': ReviewList, 'replyList': replyList}
 
@@ -126,3 +132,5 @@ def search_results(request):
     search = request.GET.get('search')
     context['results'] = Restaurant.objects.filter(name__icontains=search)
     return render(request, 'results.html', context=context)
+
+

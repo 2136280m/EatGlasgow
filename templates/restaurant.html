@@ -26,6 +26,7 @@
 <div class="middle"><br></div>
 <!-- add view block here  -->
 {% if user.is_authenticated %}
+{% if user.userprofile.status == 1 and user.id !=  RestaurantList.owner.id %}
 <section> 
 <form id="Review_form" method="post" action="{% url 'restaurant' RestaurantList.resID %}" enctype="multipart/form-data">
 {% csrf_token %}
@@ -39,6 +40,7 @@
 <input type="submit" value="Send" />
 </form>
 </section> 
+{% endif %}
 {% endif %}
 
 
@@ -63,9 +65,21 @@
 					<section> 
 						Re: {{ Review.userID }} by {{ reply.ownerID }}<span style="float:right;">{{ reply.repDate }}</span><br>
 						{{ reply.content }}
-						</section> 
+					</section> 
+					
 					{% endif %}
 				{% endfor %}
+			{% if user ==  RestaurantList.owner  %}
+			<section> 
+			Reply:
+			<form id="Reply_form" method="post" action="{% url 'restaurant' RestaurantList.resID %}" enctype="multipart/form-data">
+				{% csrf_token %}
+				<textarea name="review_text"></textarea>
+				<input type="submit" value="Send" />
+				<input type="hidden" name="ReviewID" value={{ Review }} />
+			</form>
+			</section> 
+			{% endif %}
 			<div class="middle"><br></div>
 		{% endif %}
 	{% endfor %}
