@@ -46,6 +46,5 @@ function checkForm(form)
       form.password.focus();
       return false;
     }
-    window.alert("You entered a valid password: " + form.password.value);
     return true;
   }
