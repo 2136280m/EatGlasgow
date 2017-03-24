@@ -13,25 +13,25 @@ from django.contrib.auth.models import User
 
 def populate():
     users = [
-        {"username": "nickyvo", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
+        {"username": "nickyvo", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 2},
         {"username": "alex", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
-        {"username": "tom", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
+        {"username": "tom", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 2},
         {"username": "caroline", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
         {"username": "guest", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1},
         {"username": "guest1", "pass": "12345abc", "avatar": "defUser.jpeg", "status": 1}
     ]
 
     restaurants = [
-        {"name": "Weather Spoon", "owner": "nickyvo", "photo": "defRes.jpeg",
+        {"name": "Weather Spoon", "owner": "tom", "photo": "defRes.jpeg",
          "cuisine": "WE", "address": "123 Byres Road Glasgow",
          "price": 2, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
         {"name": "Cook Indi", "owner": "tom", "photo": "defRes.jpeg",
          "cuisine": "AS", "address": "123 Great Western Road Glasgow",
          "price": 2, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
-        {"name": "Dumpling Monkey", "owner": "caroline", "photo": "defRes.jpeg",
+        {"name": "Dumpling Monkey", "owner": "tom", "photo": "defRes.jpeg",
          "cuisine": "AS", "address": "123 Dumbarton Road Glasgow",
          "price": 1, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
-        {"name": "Neighbourhood", "owner": "alex", "photo": "defRes.jpeg",
+        {"name": "Neighbourhood", "owner": "tom", "photo": "defRes.jpeg",
          "cuisine": "AS", "address": "123 Argyle Street Glasgow",
          "price": 2, "status": 1,"description":"Our destination Grill offers a fresh and sophisticated seasonal menu with brasserie-style service. The Bar upstairs features an exclusive Champagne Room and Cigar Terrace, offering an extensive drinks list of classic cocktails and wine from around the world. For up-to-date menus and drinks lists, please visit our website."},
         {"name": "Pickled Ginger", "owner": "nickyvo", "photo": "defRes.jpeg",
@@ -59,7 +59,7 @@ def populate():
     ]
 
     for user in users:
-        add_user_and_profile(user["username"], user["pass"], user["avatar"])
+        add_user_and_profile(user["username"], user["pass"], user["avatar"], user["status"])
 
     for res in restaurants:
         add_res(res["owner"], res["name"], res["photo"], res["cuisine"], res["address"], res["price"], res["description"])
@@ -74,13 +74,14 @@ def populate():
         add_reply(rep["revID"], rep["owner"], rep["content"])
 
 
-def add_user_and_profile(username, password, avatar):
+def add_user_and_profile(username, password, avatar, statusstatus):
     u = User.objects.create_user(username, email=None, password=None)
     u.set_password(password)
     u.save()
     up = UserProfile.objects.create()
     up.user_id = u.id
     up.avatar = "profile_images\\"+avatar
+    up.status = statusstatus
     up.save()
 
 
