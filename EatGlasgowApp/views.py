@@ -52,6 +52,28 @@ def restaurant(request, RestaurantID):
 
     return render(request, 'restaurant.html', context_dict)
 
+def restaurantEditor(request, RestaurantID):
+    if request.method == 'POST':
+        Editor = Restaurant.objects.get(resID=RestaurantID)
+        if request.user==Editor.owner:
+            Editor.name=request.POST.get('name')
+            Editor.cuisine=request.POST.get('cuisine')
+            Editor.streetAddress=request.POST.get('address')
+            Editor.priceRange=request.POST.get('Price')
+            Editor.openingHour=request.POST.get('OH')
+            Editor.status=request.POST.get('status')
+            temp=Editor.photo
+            try:
+                Editor.photo=request.FILES['photo']
+            except :
+                pass
+            Editor.save()
+    try:
+        Edit = Restaurant.objects.get(resID=RestaurantID)
+    except :
+        return render(request, 'Restaurant_Editor.html')
+    return render(request, 'Restaurant_Editor.html', {'RestaurantList':Edit})
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -140,13 +162,12 @@ def search_results(request):
 def your_restaurant(request):
     if request.method == 'POST':
         rest=Restaurant.objects.get(resID=request.POST.get('Rid'))
-        if (rest.status==1):
-            print(rest)
+        if (rest.status==1):##if it open, mark it close
             rest.status=-1
             rest.save()
-        elif (rest.status==-1):
-            print(rest)
+        elif (rest.status==-1):##if it close, mark it open
             rest.status=1
             rest.save()
     return render(request, 'your_restaurant.html', {'RestaurantList':Restaurant.objects.filter(owner=request.user, status=1)|Restaurant.objects.filter(owner=request.user, status=-1)})
+    ##select * from Restaurant where owner=request.use and (status=1or status=-1)
 

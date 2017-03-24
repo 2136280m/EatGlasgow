@@ -2,10 +2,10 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	{{ Name }}
-	</title>
+	{{ RestaurantList.name }}
+{% endblock %}
+{% block head_block %}
 	<link rel="stylesheet" type="text/css" href="{% static "CSS/restaurant.css" %}"/>
-	
 {% endblock %} 
 
 {% block body_block %}

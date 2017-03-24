@@ -81,12 +81,16 @@
                                             <td class="Rinfo_header">Opening Hour:</td>
                                             <td>{{ Restaurant.openingHour }}</td>
                                         </tr>
+                                         <tr>
+                                            <td class="Rinfo_header">Status:</td>
+                                            <td>{{ Restaurant.get_status_display }}</td>
+                                        </tr>
                                     </table>
                             </tr>
                             </td>
                         </table>
                          {% if  Restaurant.status == -1 %}
-                        <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
+                        <a href="{% url 'restaurantEditor' Restaurant.resID %}" class="center">Edit</a></br>
                         <form id="open" method="POST" action="{% url 'your_restaurant' %}">
                         {% csrf_token %}
                         <input type="hidden" name="Rid" value={{ Restaurant.resID }}>
@@ -94,7 +98,7 @@
                         </form>
                        {% endif %}
                         {% if  Restaurant.status == 1 %}
-                        <a href="{% url 'restaurant' Restaurant.resID %}" class="center">More Information</a></br>
+                        <a href="{% url 'restaurantEditor' Restaurant.resID %}" class="center">Edit</a></br>
                         <form id="delete" method="POST" action="{% url 'your_restaurant' %}">
                         {% csrf_token %}
                         <input type="hidden" name="Rid" value={{ Restaurant.resID }}>

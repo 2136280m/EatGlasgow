@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+    Editor-{{ RestaurantList.name }}
+{% endblock %}
+
+{% block body_block %}
+<form id="EditRestaurant" method="post" action="{% url 'restaurantEditor' RestaurantList.resID %}" enctype="multipart/form-data">
+{% csrf_token %}
+Current Photo:<br>
+<img src="{{ RestaurantList.photo.url }}" alt="{{ RestaurantList.name }}Photo"/><br>
+New: <input type="file" name="photo" accept="image/*"><br>
+<table >
+ <tr>
+ 	<td>Category<td>
+ 	<td>Current<td>
+ 	<td>New<td>
+ </tr>
+  <tr>
+ 	<td>Name<td>
+ 	<td>{{ RestaurantList.name }}<td>
+ 	<td><input type="text" name="name" width="48" size="50" value='{{ RestaurantList.name }}' required/><td>
+ </tr>
+  <tr>
+ 	<td>Cuisine<td>
+ 	<td>{{ RestaurantList.get_cuisine_display }}<td>
+ 	<td><select name="cuisine">
+  <option value ='WE'>Western</option>
+  <option value='AS'>Asian</option>
+  <option value='ME'>Middle Eastern</option>
+</select><td>
+ </tr>
+  <tr>
+ 	<td>Address<td>
+ 	<td>{{ RestaurantList.streetAddress }}<td>
+ 	<td><input type="text" name="address" width="48" size="50" value='{{ RestaurantList.streetAddress }}' required /><td>
+ </tr>
+   <tr>
+ 	<td>Price Rang<td>
+ 	<td>{{ RestaurantList.get_priceRange_display }}<td>
+ 	<td><select name="Price">
+ 	<option value =0>Not Rated</option>
+  <option value=1>Low Price</option>
+  <option value=2>Affordable</option>
+  <option value=3>Fancy</option></select><td>
+ </tr>
+   <tr>
+ 	<td>OpeningHour<td>
+ 	<td>{{ RestaurantList.openingHour }}<td>
+ 	<td><input type="text" name="OH" width="48" size="50" required value='{{ RestaurantList.openingHour }}'/><td>
+ </tr>
+   <tr>
+ 	<td>Status:<td>
+ 	<td>{{ Restaurant.get_status_display }}<td>
+ 	<td><select name="status">
+ 	<option value =1>Open</option>
+  <option value=-1>Closed</option>
+</select><td>
+ </tr>
+</table>
+ <input id="submit" type="submit" name="Submit">
+<form>
+{% endblock %}

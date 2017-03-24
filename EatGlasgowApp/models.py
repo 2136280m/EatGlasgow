@@ -37,7 +37,7 @@ class Restaurant(models.Model):
         (3, 'Fancy'),
     )
     RES_STATUS_CHOICES = (
-        (1, 'Stored'),
+        (1, 'Open'),
         (0, 'Deleted'),
         (-1, 'Closed'),
     )
