@@ -21,7 +21,11 @@
                         <a href="{% url 'logout' %}">Logout</a></br>
                         {% if user.userprofile.status == 2 %}
                             <a href= {% url 'your_restaurant' %}> Your Restaurants </a><br>
+<<<<<<< HEAD
                             <a href= {% url 'addRestaurant' %}> Add Restaurants </a><br>
+=======
+                            <a href= {% url 'addRestaurant' %}> Add Restaurant</a><br>
+>>>>>>> 601c43635bdcc3e179164c55a1c1a177240e07f4
                         {% endif %}
                     </div>
                 {% else %}
