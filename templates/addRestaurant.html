@@ -11,7 +11,10 @@
 		<form action="{% url 'addRestaurant' %}" id="addRestaurant_form" enctype="multipart/form-data", 
 		method="POST", >
 			<table>
-				<td></td>
+				<td>
+				{{addRestaruant_form.as_table}}
+				{{addRestaurant.help_text}}
+				</td>
 			</table>	
 			<input type="submit" name="submit" value="Add Restaurant">
 		</form>
