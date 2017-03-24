@@ -21,12 +21,14 @@ class RestaurantForm(forms.ModelForm):
 
 	#name, streedAdress, opening hourt(input)
 	name = forms.CharField(max_length=128, help_text="Please enter the name of restaurant")
-	cuisine = forms.ChoiceField(widget=forms.RadioSelect, choices=CUISINE_CHOICE)
-	streetAdress = forms.CharField(max_length=128, help_text="Please enter the adress of restaurant")
-	priceRange = forms.ChoiceField(widget=forms.RadioSelect, choices=RANGE_CHOICE)
-	openingHours = forms.CharField(max_length=128, help_text="Please enter the opening hours of restaurant")
+	cuisine = forms.ChoiceField(widget=forms.RadioSelect, choices=CUISINE_CHOICE)	
+	priceRange = forms.ChoiceField(widget=forms.RadioSelect, choices=RANGE_CHOICE)	
 	status = forms.ChoiceField(widget=forms.RadioSelect, choices=RESTAURANT_STATUS_CHOICE)
+	streetAdress = forms.CharField(max_length=128, help_text="Please enter the adress of restaurant")
+	openingHour = forms.CharField(max_length=128, help_text="Please enter the opening hour of restaurant")
+
 
 	class Meta():
 		model = Restaurant
-		fields = ('name', 'cuisine', 'priceRange', 'status', 'streetAdress', 'openingHours' )
+		fields = ('name', 'cuisine', 'priceRange', 'status', 'streetAdress', 'openingHour' )
+
