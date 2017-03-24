@@ -185,12 +185,6 @@ def your_restaurant(request):
     return render(request, 'your_restaurant.html', {'RestaurantList':Restaurant.objects.filter(owner=request.user, status=1)|Restaurant.objects.filter(owner=request.user, status=-1)})
     ##select * from Restaurant where owner=request.use and (status=1or status=-1)
 
-
-
-
-
-def test(request):
-    return render(request, 'test.html')
     
 def searchtest(request, keyword):
     RestaurantList = {'RestaurantList': Restaurant.objects.filter(name__icontains=keyword)}

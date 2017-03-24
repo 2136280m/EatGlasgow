@@ -13,22 +13,3 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password','isOwner')
-
-class RestaurantForm(forms.ModelForm):
-	CUISINE_CHOICE = (('WE', 'Western'), ('AS', 'Asian'), ('ME', 'Middle Eastern'),)
-	RANGE_CHOICE = ((0, 'Not Rated'), (1, 'Low Price'), (2, 'Affordable'), (3, 'Fancy'),)
-	RESTAURANT_STATUS_CHOICE = ((1, 'Open'), (0, 'Close down'), (-1, 'Close'))
-
-	#name, streedAdress, opening hourt(input)
-	name = forms.CharField(max_length=128, help_text="Please enter the name of restaurant")
-	cuisine = forms.ChoiceField(widget=forms.RadioSelect, choices=CUISINE_CHOICE)	
-	priceRange = forms.ChoiceField(widget=forms.RadioSelect, choices=RANGE_CHOICE)	
-	status = forms.ChoiceField(widget=forms.RadioSelect, choices=RESTAURANT_STATUS_CHOICE)
-	streetAdress = forms.CharField(max_length=128, help_text="Please enter the adress of restaurant")
-	openingHour = forms.CharField(max_length=128, help_text="Please enter the opening hour of restaurant")
-
-
-	class Meta():
-		model = Restaurant
-		fields = ('name', 'cuisine', 'priceRange', 'status', 'streetAdress', 'openingHour' )
-
