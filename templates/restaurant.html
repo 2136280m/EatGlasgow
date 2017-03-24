@@ -66,10 +66,11 @@
 						Re: {{ Review.userID }} by {{ reply.ownerID }}<span style="float:right;">{{ reply.repDate }}</span><br>
 						{{ reply.content }}
 					</section> 
-					
 					{% endif %}
 				{% endfor %}
-			{% if user ==  RestaurantList.owner  %}
+			{% if user ==  RestaurantList.owner %}
+			{% if Review.revID in replyid %}
+			{% else %}
 			<section> 
 			Reply:
 			<form id="Reply_form" method="post" action="{% url 'restaurant' RestaurantList.resID %}" enctype="multipart/form-data">
@@ -78,7 +79,9 @@
 				<input type="submit" value="Send" />
 				<input type="hidden" name="ReviewID" value={{ Review }} />
 			</form>
+
 			</section> 
+			{% endif %}
 			{% endif %}
 			<div class="middle"><br></div>
 		{% endif %}

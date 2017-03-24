@@ -38,13 +38,15 @@ def restaurant(request, RestaurantID):
     RestaurantList = Restaurant.objects.get(resID=RestaurantID)  ##RestaurantList by RestaurantID
     ReviewList = Review.objects.filter(resID=RestaurantID).order_by('-reviewDate')  ##ReviewList by RestaurantID
     replyList = []
+    replyid=[]
     for x in ReviewList:
         try:
             replyList.append(Reply.objects.get(revID=x.revID))
+            replyid.append(Reply.objects.get(revID=x.revID).revID.revID)
         except Reply.DoesNotExist:
-            replyList.append(None)
+            pass
     
-    context_dict = {'RestaurantList': RestaurantList, 'ReviewList': ReviewList, 'replyList': replyList}
+    context_dict = {'RestaurantList': RestaurantList, 'ReviewList': ReviewList, 'replyList': replyList, 'replyid':replyid}
 
     return render(request, 'restaurant.html', context_dict)
 
@@ -132,10 +134,7 @@ def search_results(request):
     context['results'] = Restaurant.objects.filter(name__icontains=search)
     return render(request, 'results.html', context=context)
 
-<<<<<<< HEAD
-
-=======
 @login_required
 def your_restaurant(request):
     return render(request, 'your_restaurant.html',{'restaurants':Restaurant.objects.filter(owner=request.user)})
->>>>>>> 0089244f027f35a32e0d5ec088ad7ea174c55d65
+
