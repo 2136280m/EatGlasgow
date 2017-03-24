@@ -6,7 +6,6 @@
 {% endblock %}
 {% block head_block %}
     <link rel="stylesheet" type="text/css" href="{% static "CSS/NormalPageStyle.css" %}"/>
-    <script src="{% static "js/search.js" %}"></script>
 {% endblock %}
 <!-- asdkaskbaskjb --> 
 {% block body_block %}
@@ -53,12 +52,8 @@
 
 
         <div class="middle"><br></div>
-<section class="restaurant_item">
-<form action=""> 
-<input type="text" id="sb" onkeyup="showHint(this.value)" />
-</form>
-</section>
-<span id="searchResult">
+
+
         {% if RestaurantList %}
             {% for Restaurant in RestaurantList %}
                 {% if Restaurant.status != 0 %}
@@ -106,6 +101,6 @@
         {% else %}
             <section><strong>Opps, Look like we do not have any restaurant yet!</strong></section>
         {% endif %}
-</span>
+
     </div>
 {% endblock %}
